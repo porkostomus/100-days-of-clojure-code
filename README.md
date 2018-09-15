@@ -1,4 +1,4 @@
-# jr0cket's #100-Days-Of-Clojure-Code Challenge
+# Porkostomus' #100-Days-Of-Clojure-Code Challenge
 From the 15th September I will spend a minimum of 1 hour per day writing Clojure code for 100 days.  This will take me up to the 24th December.  
 
 Follow my journey in the [log](log.md), collaborate with issues, pull requests and via the [Clojurians Slack #100-days-of-code channel](https://clojurians.slack.com/) - [self sign-up](https://clojurians.net/), [archive](https://clojurians-log.clojureverse.org/).
