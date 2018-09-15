@@ -3,7 +3,7 @@ From the 15th September I will spend a minimum of 1 hour per day writing Clojure
 
 Follow my journey in the [log](log.md), collaborate with issues, pull requests and via the [Clojurians Slack #100-days-of-code channel](https://clojurians.slack.com/) - [self sign-up](https://clojurians.net/), [archive](https://clojurians-log.clojureverse.org/).
 
-Progress will also be tweeted from [jr0cket](https://twitter.com/jr0cket), including [_100DaysOfCode](https://twitter.com/_100DaysOfCode)
+Progress will also be tweeted from [porkostomus](https://twitter.com/porkostomus), including [_100DaysOfCode](https://twitter.com/_100DaysOfCode)
 
 ## Contents
 
