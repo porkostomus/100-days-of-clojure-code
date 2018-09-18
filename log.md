@@ -6,7 +6,7 @@
 
 **Thoughts:** Fun fact: [Subtractive notation](https://en.wikipedia.org/wiki/Subtractive_notation) was not the original pattern for Roman numerals. I wonder how much this change had to do with making clock faces appear more balanced.
 
-Today was very exciting for me because yesterday's challenge was completed... by a fellow participant! I received a [pull request](https://github.com/porkostomus/ctrain/commit/5fadbea52f3da219fbfd81fe70d92b1b6501439c) from [kazesberger](https://github.com/kazesberger) addressing the issue that I spoke of yesterday.
+Today was very exciting for me because yesterday's challenge was completed... by a fellow participant! I received a [pull request](https://github.com/porkostomus/ctrain/commit/5fadbea52f3da219fbfd81fe70d92b1b6501439c) from [kazesberger](https://github.com/kazesberger) addressing the issue that I spoke of yesterday. Now that the app functions properly, I can work on expanding it. The dataset only included the first 87 problems, the rest I believe were submitted over time, which I plan to do as well, and then maybe add problems from other sources for my own big custom learning app. 
 
 Speaking of PRs, I also got some help on [Cryogen Now!](https://gitlab.com/cryogenweb/cryogenweb.gitlab.io), a forkable template I made so that people can get a Clojure static site running on Gitlab Pages in just a few clicks. It took me way too long to get the configuration right, and don't want anyone to ever have to go through that. Github has [Jekyll Now](https://github.com/barryclark/jekyll-now) which uses Ruby, and now we've got one too!
 
