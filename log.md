@@ -12,7 +12,7 @@ Speaking of PRs, I also got some help on [Cryogen Now!](https://gitlab.com/cryog
 
 **Link to work:**
 
-* [Just Juxt #33](https://porkostomus.gitlab.io/posts-output/2018-09-17-Just-Juxt-34/)
+* [Just Juxt #34](https://porkostomus.gitlab.io/posts-output/2018-09-17-Just-Juxt-34/)
 * [ctrain](https://github.com/porkostomus/ctrain)
 * [Cryogen Now!](https://gitlab.com/cryogenweb/cryogenweb.gitlab.io)
 
