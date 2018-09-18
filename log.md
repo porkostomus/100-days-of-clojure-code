@@ -2,7 +2,7 @@
 
 ### Day 3: September 17, 2018
 
-**Today's Progress**: Just Juxt #34: Read Roman numerals (4clojure #91)
+**Today's Progress**: Just Juxt #34: Read Roman numerals (4clojure #92)
 
 **Thoughts:** Fun fact: [Subtractive notation](https://en.wikipedia.org/wiki/Subtractive_notation) was not the original pattern for Roman numerals. I wonder how much this change had to do with making clock faces appear more balanced.
 
