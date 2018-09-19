@@ -1,5 +1,23 @@
 # 100 Days Of Code - Log
 
+### Day 4: September 18, 2018
+
+**Today's Progress**: Just Juxt #35: Game of Life (4clojure #94)
+
+**Thoughts:** Today while working on ctrain (adding more problems to it) I started getting some very perplexing behavior, when I edited a file that was `slurp`ed in it was still printing the same wrong file. I renamed it, and still no change. I tried to `slurp` the new name, and got an error. It truly made no sense.
+
+Eventually I realized that my terminal was still SSH'd into my other machine.
+
+I mentored numerous [Exercism](https://exercism.io/) solutions today, because one of the most active mentors is on vacation so I've had to up my game considerably. Lots of new folks doing the first exercises! I learn a lot from reading them and picking them apart, and try to give very careful feedback, because I realize that I've taken the responsibility of assisting people in their first exposure to Clojure!
+
+And today's Just Just was a fun one too, Conway's Game of Life!
+
+**Link to work:**
+
+* [Just Juxt #35](https://porkostomus.gitlab.io/posts-output/2018-09-18-Just-Juxt-35/)
+* [ctrain](https://github.com/porkostomus/ctrain)
+* [Exercism](https://exercism.io/)
+
 ### Day 3: September 17, 2018
 
 **Today's Progress**: Just Juxt #34: Read Roman numerals (4clojure #92)
