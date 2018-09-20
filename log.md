@@ -1,5 +1,16 @@
 # 100 Days Of Code - Log
 
+### Day 6: September 20, 2018
+
+**Today's Progress**: Just Juxt #37: Re-implement map (4clojure #118), Make a Lisp Part 2
+
+**Thoughts:** I wanted to cut to the chase and get right into the interpreter, using self-hosted Clojurescript and none of that low-level readline business. More along the lines of the one in SICP. Eric Normand shared one of the most basic ones I've seen on the [Apropos show](https://youtu.be/WFWZlbpZ4Qg), so I figured that would be a good place to start.
+
+**Link to work:**
+
+* [Just Juxt #37](https://porkostomus.gitlab.io/posts-output/2018-09-20-Just-Juxt-37/)
+* [Make a Lisp Part 2](https://porkostomus.gitlab.io/posts-output/2018-09-20-day-6/)
+
 ### Day 5: September 19, 2018
 
 **Today's Progress**: Just Juxt #36: The Balance of N (4clojure #115), Make a Lisp in Clojure
