@@ -1,5 +1,16 @@
 # 100 Days Of Code - Log
 
+### Day 5: September 19, 2018
+
+**Today's Progress**: Just Juxt #36: The Balance of N (4clojure #115), Make a Lisp in Clojure
+
+**Thoughts:** For awhile I've been looking at the [Make a Lisp](https://github.com/kanaka/mal) project and fiddled around with various implementations, particularly C and Bash, but for this challenge decided to do it in Clojure.
+
+**Link to work:**
+
+* [Just Juxt #36](https://porkostomus.gitlab.io/posts-output/2018-09-19-Just-Juxt-36/)
+* [Make a Lisp in Clojure](https://porkostomus.gitlab.io/posts-output/2018-09-19-day-5/)
+
 ### Day 4: September 18, 2018
 
 **Today's Progress**: Just Juxt #35: Game of Life (4clojure #94)
