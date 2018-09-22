@@ -1,5 +1,21 @@
 # 100 Days Of Code - Log
 
+### Day 7: September 21, 2018
+
+**Today's Progress**: A big reason I'm doing this challenge is to prepare myself for a job using Clojure. During a recent interview, I was asked if I had ever used [re-frame](https://github.com/Day8/re-frame). On my resume I have several small projects using [Reagent](http://reagent-project.github.io/), but nothing larger.
+
+I explained myself based on the common advice I've heard regarding the Reagent vs. re-frame debate, which I'll simplify as something like:
+
+>Use re-frame if your app is complicated enough to need it, otherwise use Reagent.
+
+So for my personal stuff, the answer was easy. Nothing that I made had enough complexity to require anything but the most basic UI elements.
+
+And that's what we're about to change.
+
+I currently have an [app](https://porkostomus.github.io/elements/) for learning the periodic table of elements. I want to build it up into something that demonstrates different chemical compounds and how they are composed.
+
+The best part is how well documented the framework is, and how many people I've heard express how nice the code is and how worthwhile it will be to learn it. So I'm gonna take my time, and do some screencasts along the way. That way others will be able to learn as well, but my selfish reason is that I've found that I learn best by going through the process of presenting the material as if I were to teach it.
+
 ### Day 6: September 20, 2018
 
 **Today's Progress**: Just Juxt #37: Re-implement map (4clojure #118), Make a Lisp Part 2
