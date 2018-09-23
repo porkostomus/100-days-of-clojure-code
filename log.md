@@ -1,5 +1,13 @@
 # 100 Days Of Code - Log
 
+### Day 8: September 22, 2018
+
+**Today's Progress**: Making a video tutorial out of the re-frame [simple example app](https://github.com/Day8/re-frame/blob/master/docs/CodeWalkthrough.md). Using [soundoftext](https://soundoftext.com/) for the narration,
+and paraphrasing the readme to say just enough to explain what's going on. I began right with installing Java and Leiningen,
+cloning the repo and starting the app, recording my screen in OBS. Once I get enough video footage and audio samples I'll start editing them down in Kdenlive.
+
+When I'm done the finished video will likely be something along the lines of [these](https://www.youtube.com/playlist?list=PLU4xPIn8mcE69QF41HoFaHxw2Whk3h7PQ).
+
 ### Day 7: September 21, 2018
 
 **Today's Progress**: A big reason I'm doing this challenge is to prepare myself for a job using Clojure. During a recent interview, I was asked if I had ever used [re-frame](https://github.com/Day8/re-frame). On my resume I have several small projects using [Reagent](http://reagent-project.github.io/), but nothing larger.
