@@ -2,7 +2,7 @@
 
 ### Day 11: September 25, 2018
 
-Getting started with Datomic Ions. And I *really* mean getting started, with a fresh Linux install. The AWS CLI tool uses Python, and I haven't even installed `pip` yet, so that's where I'm at:
+Getting started with [Datomic Ions](https://docs.datomic.com/cloud/ions/ions-tutorial.html). And I *really* mean getting started, with a fresh Linux install. The [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) uses Python, and I haven't even installed `pip` yet, so that's where I'm at:
 
 ```
 $ sudo apt install python-pip
