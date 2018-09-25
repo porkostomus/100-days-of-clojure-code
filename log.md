@@ -1,5 +1,17 @@
 # 100 Days Of Code - Log
 
+### Day 11: September 25, 2018
+
+Getting started with Datomic Ions. And I *really* mean getting started, with a fresh Linux install. The AWS CLI tool uses Python, and I haven't even installed `pip` yet, so that's where I'm at:
+
+```sudo apt install python-pip
+```
+
+```$ pip install awscli --upgrade --user
+```
+
+So far so good.
+
 ### Day 10: September 24, 2018
 
 Mentored a whole bunch of exercisms. Mostly easy ones like Armstrong Numbers and Two-Fer. Could definitely use more active mentors because they tend to pile up if I start slacking, and I feel bad because no one should have to wait several days just to have their solution looked at.
