@@ -4,10 +4,12 @@
 
 Getting started with Datomic Ions. And I *really* mean getting started, with a fresh Linux install. The AWS CLI tool uses Python, and I haven't even installed `pip` yet, so that's where I'm at:
 
-```sudo apt install python-pip
+```
+$ sudo apt install python-pip
 ```
 
-```$ pip install awscli --upgrade --user
+```
+$ pip install awscli --upgrade --user
 ```
 
 So far so good.
