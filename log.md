@@ -1,5 +1,11 @@
 # 100 Days Of Code - Log
 
+### Day 9: September 23, 2018
+
+**Link to work:**
+
+* [re-frame tutorial Part 1](https://www.youtube.com/watch?v=Xo6W300s1Xs&t=183s)
+
 ### Day 8: September 22, 2018
 
 **Today's Progress**: Making a video tutorial out of the re-frame [simple example app](https://github.com/Day8/re-frame/blob/master/docs/CodeWalkthrough.md). Using [soundoftext](https://soundoftext.com/) for the narration,
