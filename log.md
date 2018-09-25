@@ -12,6 +12,11 @@ $ sudo apt install python-pip
 $ pip install awscli --upgrade --user
 ```
 
+```
+$ aws --version
+aws-cli/1.16.20 Python/2.7.15rc1 Linux/4.15.0-34-generic botocore/1.12.10
+```
+
 So far so good.
 
 ### Day 10: September 24, 2018
