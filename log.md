@@ -1,5 +1,11 @@
 # 100 Days Of Code - Log
 
+### Day 10: September 24, 2018
+
+Mentored a whole bunch of exercisms. Mostly easy ones like Armstrong Numbers and Two-Fer. Could definitely use more active mentors because they tend to pile up if I start slacking, and I feel bad because no one should have to wait several days just to have their solution looked at.
+
+Today's [Just Juxt](https://porkostomus.gitlab.io/posts-output/2018-09-24-Just-Juxt-41/) was a fun one too.
+
 ### Day 9: September 23, 2018
 
 **Link to work:**
