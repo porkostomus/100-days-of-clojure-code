@@ -1,4 +1,127 @@
-# 100 Days Of Code - Log
+### Day 11: September 26, 2018
+
+Working on my [minesweeper game](https://porkostomus.gitlab.io/posts-output/2018-08-27-minesweeper/) in Reagent, rewriting the mine-detector that I had in [tsweep](https://github.com/porkostomus/tsweep) which is really funny because that was my very first Clojure project.
+
+Here's my new mine-detector. It's just a set of predicated for whether there's a mine in any of the 8 surrounding squares: 
+
+```
+(defn mine? [x y]
+  (= 1 (get (:matrix @app-state) [x y])))
+(defn left? [x y]
+  (mine? (dec x) y))
+(defn right? [x y]
+  (mine? (inc x) y))
+(defn top? [x y]
+  (mine? x (inc y)))
+(defn bottom? [x y]
+  (mine? x (dec y)))
+(defn top-left? [x y]
+  (mine? (dec x) (inc y)))
+(defn top-right? [x y]
+  (mine? (inc x) (dec y)))
+(defn bottom-left? [x y]
+  (mine? (dec x) (dec y)))
+(defn bottom-right? [x y]
+  (mine? (inc x) (dec y)))
+```
+
+Compared to the old one, which was represented with a single vector:
+
+```
+(defn left [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (not= 0 (rem square rows))
+            (recur (assoc board square
+			         (conj (get board square)
+					       (dec square)))
+		    (dec square))
+        (recur board (dec square))))))
+
+(defn right [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (not= 0 (rem (inc square) rows))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (inc square)))
+            (dec square))
+        (recur board (dec square))))))
+
+(defn top [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (< rows (inc square))
+            (recur (assoc board square
+              (conj (get board square)
+                (- square rows)))
+            (dec square))
+        (recur board (dec square))))))
+
+(defn bottom [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (> (- (* rows rows) rows) square)
+          (recur (assoc board square
+                   (conj (get board square)
+                         (+ rows square)))
+          (dec square))
+        (recur board (dec square))))))
+
+(defn top-left [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (and (< rows (inc square))
+                 (not= 0 (rem square rows)))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (dec (- square rows))))
+            (dec square))
+    (recur board (dec square))))))
+
+(defn top-right [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (and (< rows (inc square))
+                 (not= 0 (rem (inc square) rows)))
+            (recur (assoc board square
+              (conj (get board square)
+                (inc (- square rows))))
+            (dec square))
+    (recur board (dec square))))))
+
+(defn bottom-left [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (and (> (- (* rows rows) rows) square)
+                 (not= 0 (rem square rows)))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (dec (+ rows square))))
+            (dec square))
+        (recur board (dec square))))))
+
+(defn bottom-right [coll]
+  (loop [board coll square (dec (count coll))]
+    (if (> 0 square)
+         board
+        (if (and (> (- (* rows rows) rows) square)
+                 (not= 0 (rem (inc square) rows)))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (inc (+ rows square))))
+            (dec square))
+        (recur board (dec square))))))
+  ```
+
+I find it quite hilarious, personally. But at the time, it seemed a miracle that I pulled it off at all.
 
 ### Day 11: September 25, 2018
 
