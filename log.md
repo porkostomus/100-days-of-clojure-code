@@ -1,4 +1,4 @@
-### Day 11: September 26, 2018
+### Day 12: September 26, 2018
 
 Working on my [minesweeper game](https://porkostomus.gitlab.io/posts-output/2018-08-27-minesweeper/) in Reagent, rewriting the mine-detector that I had in [tsweep](https://github.com/porkostomus/tsweep) which is really funny because that was my very first Clojure project.
 
