@@ -2,7 +2,7 @@
 
 Working on my [minesweeper game](https://porkostomus.gitlab.io/posts-output/2018-08-27-minesweeper/) in Reagent, rewriting the mine-detector that I had in [tsweep](https://github.com/porkostomus/tsweep) which is really funny because that was my very first Clojure project.
 
-Here's my new mine-detector. It's just a set of predicated for whether there's a mine in any of the 8 surrounding squares: 
+Here's my new mine-detector. It's just a set of predicates for whether there's a mine in any of the 8 surrounding squares: 
 
 ```
 (defn mine? [x y]
