@@ -123,6 +123,8 @@ Compared to the old one, which was represented with a single vector:
 
 I find it quite hilarious, personally. But at the time, it seemed a miracle that I pulled it off at all.
 
+Bonus: It will also come in handy for a Sudoku board.
+
 ### Day 11: September 25, 2018
 
 Getting started with [Datomic Ions](https://docs.datomic.com/cloud/ions/ions-tutorial.html). And I *really* mean getting started, with a fresh Linux install. The [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) uses Python, and I haven't even installed `pip` yet, so that's where I'm at:
