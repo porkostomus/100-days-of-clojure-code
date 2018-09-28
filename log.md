@@ -1,6 +1,10 @@
 ### Day 13: September 27, 2018
 
-I got my first Clojure job today!
+Today I've been in a state of utter shock because I had an interview this morning and...
+
+I got the job... and it's in England! Doing re-frame and Datomic!
+
+
 
 ### Day 12: September 26, 2018
 
