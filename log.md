@@ -4,7 +4,9 @@ Today I've been in a state of utter shock because I had an interview this mornin
 
 I got the job... and it's in England! Doing re-frame and Datomic!
 
+So soon I'll be having some *serious* Clojure work to do...
 
+In the meantime, here's a [juxt](https://porkostomus.gitlab.io/posts-output/2018-09-27-Just-Juxt-44/).
 
 ### Day 12: September 26, 2018
 
