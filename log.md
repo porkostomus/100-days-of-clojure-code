@@ -35,7 +35,7 @@ Here's my new mine-detector. It's just a set of predicates for whether there's a
   (mine? (inc x) (dec y)))
 ```
 
-Compared to the old one, which was represented with a single vector:
+Compared to the old one, which was represented with a single vector (shown here just for the lulz):
 
 ```
 (defn left [coll]
