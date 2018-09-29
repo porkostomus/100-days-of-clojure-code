@@ -1,3 +1,7 @@
+### Day 14: September 28, 2018
+
+So now that I know what I'll be doing for work, I can refocus my learning trajectory to more UI design type stuff. And learning re-frame! Since my first video left off at the 3rd "domino", the second will cover the next 2. I've already prepared the script and done the audio. 
+
 ### Day 13: September 27, 2018
 
 Today I've been in a state of utter shock because I had an interview this morning and...
