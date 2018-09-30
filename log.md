@@ -1,3 +1,9 @@
+### Day 15: September 29, 2018
+
+Finished up the script for the rest of the re-frame example application tutorial video, but I've gotta move straight on to the [todomvc](https://github.com/Day8/re-frame/tree/master/examples/todomvc) app.
+
+Bring it on.
+
 ### Day 14: September 28, 2018
 
 So now that I know what I'll be doing for work, I can refocus my learning trajectory to more UI design type stuff. And learning re-frame! Since my first video left off at the 3rd "domino", the second will cover the next 2. I've already prepared the script and done the audio. 
