@@ -4,6 +4,8 @@ To help me learn spacemacs quickly, I've moved the journal into org mode:
 
 ![Org Mode](/2018-10-04-030301_1366x768_scrot.png)
 
+### Day Something-or-other: October 3, 2018
+
 Random TIL: I've begun to realize the tremendous utility of GitHub stars. Combines the power of bookmarks with "likes". Projects I've successfully used ought to be starred, so that I can find them easily when, for example, someone asks on Slack what libraries are available for a certain thing.
 
 [jr0cket's Spacemacs guide](https://practicalli.github.io/spacemacs/) is great! While using it to set up my editor, I realized that I had done this before... almost a year ago! I remember because of the cautionary word on using [fancy symbols](https://practicalli.github.io/spacemacs/install-spacemacs/fancify-symbols.html), because I had found the guide while I was specifically searching for how to use that feature! I was a former user of [Emacs Live](https://github.com/overtone/emacs-live), and really loved the fancy symbols and [cyberpunk theme](https://practicalli.github.io/spacemacs/install-spacemacs/add-another-theme.html), so I was glad to see that in there too!
@@ -15,8 +17,6 @@ Right now I'm up to [Spacemacs Basics](https://practicalli.github.io/spacemacs/s
 But I won't be dragging my heels, because I'm very excited to get to the part on org mode - and will be switching this journal into that in order to maximize practice and get me to write more. That way I'll spend more time in emacs and cook the shortcuts into my fingers faster, and be more organized and productive for free!
 
 Besides, this file is starting to get stupid-long.
-
-### Day Something-or-other: October 3, 2018
 
 Still learning re-frame. A funny thing I noticed while fiddling with the todomvc example app was the CSS file:
 
