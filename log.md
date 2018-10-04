@@ -391,7 +391,9 @@ The funny part, I thought, was how responsible this is for the look and feel of 
 
 ![no css](/2018-10-03-175549_1366x768_scrot.png)
 
-So where to learn how to do good CSS? I suppose the docs on MDN would be a good start.
+So where to learn how to do good CSS? I suppose the docs on MDN would be a good start. Looking for any recommendations here.
+
+Another thing I've been doing lately is setting up spacemacs. Anyone know a good guide on that? Just kidding, I'm using [jr0cket's](https://practicalli.github.io/spacemacs/)!
 
 ### Day 15: September 29, 2018
 
