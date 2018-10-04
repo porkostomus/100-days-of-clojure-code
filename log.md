@@ -383,13 +383,15 @@ html #clear-completed:active {
 }
 ```
 
-The funny part being how responsible this is for the look and feel of the app:
+The reason I pasted all that was to make a point. And that I don't know how to include the expandable-code-snippet-thingy. Maybe I'll figure that out tomorrow.
+
+The funny part, I thought, was how responsible this is for the look and feel of the app. Here it is with and without the CSS:
 
 ![Todomvc Screenshot](/2018-10-03-175127_1366x768_scrot.png)
 
-Now see what happens if I remove the CSS:
-
 ![no css](/2018-10-03-175549_1366x768_scrot.png)
+
+So where to learn how to do good CSS? I suppose the docs on MDN would be a good start.
 
 ### Day 15: September 29, 2018
 
