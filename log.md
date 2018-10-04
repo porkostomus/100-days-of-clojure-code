@@ -1,5 +1,7 @@
 ### Day 19: October 4, 2018
 
+Random TIL: I've begun to realize the tremendous utility of GitHub stars.
+
 [jr0cket's Spacemacs guide](https://practicalli.github.io/spacemacs/) is great! While using it to set up my editor, I realized that I had done this before... almost a year ago! I remember because of the cautionary word on using [fancy symbols](https://practicalli.github.io/spacemacs/install-spacemacs/fancify-symbols.html), because I had found the guide while I was specifically searching for how to use that feature! I was a former user of [Emacs Live](https://github.com/overtone/emacs-live), and really loved the fancy symbols and [cyberpunk theme](https://practicalli.github.io/spacemacs/install-spacemacs/add-another-theme.html), so I was glad to see that in there too!
 
 Now all I need to do is install [Nyan Mode](https://github.com/TeMPOraL/nyan-mode), and my emacs experience will be complete.
