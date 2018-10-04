@@ -393,6 +393,8 @@ The funny part, I thought, was how responsible this is for the look and feel of 
 
 So where to learn how to do good CSS? I suppose the [docs on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS) would be a good start. Looking for any recommendations here. My new career is in UI design, so I want to build a solid foundation. I'll need to be familiar with the preprocessors too (eg. SASS), so perhaps I'll go through the [codecademy](https://www.codecademy.com/learn/learn-sass) stuff again for a refresher.
 
+A particular area of focus for me is the psychology of UI design. A [good set of resources](https://design.tutsplus.com/articles/50-totally-free-lessons-in-graphic-design-theory--psd-2916) was mentioned on the [programming throwdown](https://www.programmingthrowdown.com/) podcast.
+
 Another thing I've been doing lately is setting up spacemacs. Anyone know a good guide on that? Just kidding, I'm using [jr0cket's](https://practicalli.github.io/spacemacs/)!
 
 ### Day 15: September 29, 2018
