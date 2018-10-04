@@ -2,6 +2,8 @@
 
 [jr0cket's Spacemacs guide](https://practicalli.github.io/spacemacs/) is great! While using it to set up my editor, I realized that I had done this before... almost a year ago! I remember because of the cautionary word on using [fancy symbols](https://practicalli.github.io/spacemacs/install-spacemacs/fancify-symbols.html), because I had found the guide while I was specifically searching for how to use that feature! I was a former user of [Emacs Live](https://github.com/overtone/emacs-live), and really loved the fancy symbols and [cyberpunk theme](https://practicalli.github.io/spacemacs/install-spacemacs/add-another-theme.html), so I was glad to see that in there too!
 
+Now all I need to do is install Nyan Cat.
+
 Right now I'm up to [Spacemacs Basics](https://practicalli.github.io/spacemacs/spacemacs-basics/). I'm gonna take my time because this is really good stuff, and while I used spacemacs before, I mostly used the holy mode since I was used to regular emacs. But then I ended up switching to Vim, partially for the easier bindings (I only type with one hand, and got tired of having to twist so much), and partially for the instant startup (since it's written in C). So now is the time to learn the Evil Mode bindings, and really go into space!
 
 But I won't be dragging my heels, because I'm very excited to get to the part on org mode - and will be switching this journal into that. That way I'll spend more time in emacs and cook the shortcuts into my fingers faster, and be more organized and productive for free!
