@@ -4,6 +4,8 @@ To help me learn spacemacs quickly, I've moved the journal into org mode:
 
 ![Org Mode](/2018-10-04-030301_1366x768_scrot.png)
 
+[Here](/hundo.md) is the auto-generated GitHub-flavored Markdown!
+
 ### Day Something-or-other: October 3, 2018
 
 Random TIL: I've begun to realize the tremendous utility of GitHub stars. Combines the power of bookmarks with "likes". Projects I've successfully used ought to be starred, so that I can find them easily when, for example, someone asks on Slack what libraries are available for a certain thing.
