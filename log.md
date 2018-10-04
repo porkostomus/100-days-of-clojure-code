@@ -385,13 +385,13 @@ html #clear-completed:active {
 
 The reason I pasted all that was to make a point. And that I don't know how to include the expandable-code-snippet-thingy. Maybe I'll figure that out tomorrow.
 
-The funny part, I thought, was how responsible this is for the look and feel of the app. Here it is with and without the CSS:
+The funny part, I thought, was how responsible this is for the look and feel of the app. I don't think it is even mentioned in the docs, because it really has nothing to do with how re-frame works, and it probably came from somewhere else anyway. Here it is with and without it:
 
 ![Todomvc Screenshot](/2018-10-03-175127_1366x768_scrot.png)
 
 ![no css](/2018-10-03-175549_1366x768_scrot.png)
 
-So where to learn how to do good CSS? I suppose the docs on MDN would be a good start. Looking for any recommendations here.
+So where to learn how to do good CSS? I suppose the docs on MDN would be a good start. Looking for any recommendations here. My new career is in UI design, so I want to build a solid foundation.
 
 Another thing I've been doing lately is setting up spacemacs. Anyone know a good guide on that? Just kidding, I'm using [jr0cket's](https://practicalli.github.io/spacemacs/)!
 
