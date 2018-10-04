@@ -4,7 +4,7 @@ To help me learn spacemacs quickly, I've moved the journal into org mode:
 
 ![Org Mode](/2018-10-04-030301_1366x768_scrot.png)
 
-[Here](/hundo.md) is the auto-generated GitHub-flavored Markdown!
+And [Here](/hundo.md) is the auto-generated GitHub-flavored Markdown file which will be the new log. This one will no longer be updated!
 
 ### Day Something-or-other: October 3, 2018
 
