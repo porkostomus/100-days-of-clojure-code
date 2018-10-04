@@ -6,7 +6,7 @@ Now all I need to do is install [Nyan Mode](https://github.com/TeMPOraL/nyan-mod
 
 Right now I'm up to [Spacemacs Basics](https://practicalli.github.io/spacemacs/spacemacs-basics/). I'm gonna take my time because this is really good stuff, and while I used spacemacs before, I mostly used the holy mode since I was used to regular emacs. But then I ended up switching to Vim, partially for the easier bindings (I only type with one hand, and got tired of having to twist so much), and partially for the instant startup (since it's written in C). So now is the time to learn the Evil Mode bindings, and really go into space!
 
-But I won't be dragging my heels, because I'm very excited to get to the part on org mode - and will be switching this journal into that. That way I'll spend more time in emacs and cook the shortcuts into my fingers faster, and be more organized and productive for free!
+But I won't be dragging my heels, because I'm very excited to get to the part on org mode - and will be switching this journal into that in order to maximize practice and get me to write more. That way I'll spend more time in emacs and cook the shortcuts into my fingers faster, and be more organized and productive for free!
 
 Besides, this file is starting to get stupid-long.
 
