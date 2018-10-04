@@ -1,6 +1,6 @@
 ### Day 19: October 4, 2018
 
-Random TIL: I've begun to realize the tremendous utility of GitHub stars.
+Random TIL: I've begun to realize the tremendous utility of GitHub stars. Combines the power of bookmarks with "likes". Projects I've successfully used ought to be starred, so that I can find them easily when, for example, someone asks on Slack what libraries are available for a certain thing.
 
 [jr0cket's Spacemacs guide](https://practicalli.github.io/spacemacs/) is great! While using it to set up my editor, I realized that I had done this before... almost a year ago! I remember because of the cautionary word on using [fancy symbols](https://practicalli.github.io/spacemacs/install-spacemacs/fancify-symbols.html), because I had found the guide while I was specifically searching for how to use that feature! I was a former user of [Emacs Live](https://github.com/overtone/emacs-live), and really loved the fancy symbols and [cyberpunk theme](https://practicalli.github.io/spacemacs/install-spacemacs/add-another-theme.html), so I was glad to see that in there too!
 
