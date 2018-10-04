@@ -397,6 +397,10 @@ A particular area of focus for me is the psychology of UI design. A [good set of
 
 Another thing I've been doing lately is setting up spacemacs. Anyone know a good guide on that? Just kidding, I'm using [jr0cket's](https://practicalli.github.io/spacemacs/)!
 
+Here's my current config:
+
+<script src="https://gist.github.com/porkostomus/951c10777d55c4257546da26e453adbb.js"></script>
+
 ### Day 15: September 29, 2018
 
 Finished up the script for the rest of the re-frame example application tutorial video, but I've gotta move straight on to the [todomvc](https://github.com/Day8/re-frame/tree/master/examples/todomvc) app.
