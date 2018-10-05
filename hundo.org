@@ -84,6 +84,10 @@ Just seems like it is important. So that's a browser tab.
 This one is a very high priority. I should probably move this one up to indicate that.
 But I need to learn org-mode...
 
+**** Org-mode manual
+
+See above.
+
 **** Clojurians Slack
 
 Always gotta have this open! Don't know what I'd do without the constant Clojure chatter!
