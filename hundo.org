@@ -1,27 +1,4 @@
 * 100 Days of Clojure Code
-** Day 19
-Yo, I'm in org mode. Today I'm doing stuff:
-
-*** Codecademy stuff on UI design.
-
-Did the HTML course just for the sake of completeness, and actually learned stuff.
-
-*** Setting up spacemacs
-
-One reason I love Clojure is because I only have one hand, and with Clojure you only need one!
-Seriously... I doubt that any other language encourages such brevity -
-one of Rich's reasons for choosing "nil" over "null" was "It's a little bit shorter"!
-But with Clojure and Vim or Spacemacs Evil Mode, you only need one finger!
-
-Got the cyberpunk theme with the nyan cat and fancy symbols!
-
-*** Moved this journal into org mode
-
-Yes, here we are. Isn't it beautiful?
-
-Then, we can export to markdown. In fact, we can enable GitHub support in the config.
-
-We're gonna need to follow [[http://spacemacs.org/layers/+emacs/org/README.html][this]]. (see that? that's a link, dawg)
 
 ** Day 20
 *** Successfully checked my gmail in spacemacs with mu4e and offlineimap
@@ -79,6 +56,21 @@ That's 2 tabs, for the source code and the site itself.
 
 Just seems like it is important. So that's a browser tab.
 
+More info - Here's the official stack listed on my job description:
+
+Leiningen / deps.edn, Re-frame, Reagent and React’s lifecycles
+REST and WebSockets
+NodeJS, NPM and Yarn
+JS / CLJS interop
+CSS Preprocessors and mainstream CSS frameworks
+Proper state management
+UX principles and slick user interfaces
+Data visualisation in SVG and Canvas
+
+Experience with CI, Docker, AWS, Datomic Cloud and Ions is welcome.
+
+So this is the list to keep handy, and will be used to form a solid study plan.
+
 **** jr0cket's spacemacs book
 
 This one is a very high priority. I should probably move this one up to indicate that.
@@ -100,3 +92,27 @@ so it proved a valuable exercise.
 I think it was a regular emacs binding like C-c C-e m or something...
 
 Holy crap, I was right.
+
+** Day 19
+Yo, I'm in org mode. Today I'm doing stuff:
+
+*** Codecademy stuff on UI design.
+
+Did the HTML course just for the sake of completeness, and actually learned stuff.
+
+*** Setting up spacemacs
+
+One reason I love Clojure is because I only have one hand, and with Clojure you only need one!
+Seriously... I doubt that any other language encourages such brevity -
+one of Rich's reasons for choosing "nil" over "null" was "It's a little bit shorter"!
+But with Clojure and Vim or Spacemacs Evil Mode, you only need one finger!
+
+Got the cyberpunk theme with the nyan cat and fancy symbols!
+
+*** Moved this journal into org mode
+
+Yes, here we are. Isn't it beautiful?
+
+Then, we can export to markdown. In fact, we can enable GitHub support in the config.
+
+We're gonna need to follow [[http://spacemacs.org/layers/+emacs/org/README.html][this]]. (see that? that's a link, dawg)
