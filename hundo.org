@@ -75,7 +75,7 @@ I ought to do one on GitHub as well, just to keep everything familiar.
 
 That's 2 tabs, for the source code and the site itself.
 
-**** CirclCI
+**** CircleCI
 
 Just seems like it is important. So that's a browser tab.
 
