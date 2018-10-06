@@ -25,6 +25,8 @@ and at the same time developing a "cookbook" of sorts.
 Interesting... I just tried to duplicate what I did on GitHub,
 and I can't figure out why the CSS is not loading [[https://porkostomus.github.io/vacation-world/][here]].
 
+EDIT (following day): Now it works. Weird.
+
 ** Day 20
 *** Successfully checked my gmail in spacemacs with mu4e and offlineimap
 
