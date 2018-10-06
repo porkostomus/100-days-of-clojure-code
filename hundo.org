@@ -1,5 +1,30 @@
 * 100 Days of Clojure Code
 
+** Day 21: October 5, 2018
+
+I have a little fantasy that remains in the back of my mind, serving as inspiration for much of what I do.
+The idea is tied to the practice of keeping configuration files on GitHub,
+but in my case I want to take it to an extreme.
+
+I want to be able to get a new computer and set up my whole environment with a single script.
+
+It's a goal that started during my days of Linux distro-hopping,
+but really has its roots in my earliest days of computing.
+I just really love setting up new systems.
+And every time that I do it, it (hopefully) becomes more streamlined.
+
+Whether or not I ever achieve my goal of a single script, I do think it's worthwhile to keep in mind.
+
+*** Codecademy - CSS course
+
+Launched my [[https://porkostomus.gitlab.io/plain-html/][own instance]] of the Vacation World site
+(for no good reason other than to practice deploying stuff).
+Actually... it's so that I'm documenting my learning instead of doing it mindlessly,
+and at the same time developing a "cookbook" of sorts.
+
+Interesting... I just tried to duplicate what I did on GitHub,
+and I can't figure out why the CSS is not loading [[https://porkostomus.github.io/vacation-world/][here]].
+
 ** Day 20
 *** Successfully checked my gmail in spacemacs with mu4e and offlineimap
 
@@ -18,6 +43,8 @@ Like check our email.
 As much satisfaction as I'd likely get from making this into a blog post,
 it ought to be enough that the file .offlineimaprc is in my [[https://github.com/porkostomus/spacemacs-config][spacemacs-config]] repo.
 I'll just add the instructions in the README to install offlineimap and mu4e.
+
+As much as I'd love to include a screenshot
 
 *** Having a fight with my browser tabs.
 
