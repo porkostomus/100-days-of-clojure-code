@@ -1,5 +1,50 @@
 * 100 Days of Clojure Code
 
+
+** Day 22: October 6, 2018
+
+Well that was strange. I was stumped last night why the CSS was not loading on my basic GitHub Pages site.
+I tried it in different browsers for like an hour or something, double and triple-checking all the code.
+Then today it works. Guess it just took a long time. 
+
+Would hate to have to ever tell a boss or client,
+"Maybe it will work in the morning?"
+
+Though I suppose we'd likely not be using GitHub Pages.
+Anyhoo, moving on.
+
+*** Spacemacs Notes - make a cheat sheet
+
+Just a concise list of stuff I actually use.
+This will also be a great opportunity to use org-mode's tables:
+
+| Key-binding | Command                                  |
+|-------------+------------------------------------------|
+| SPC f f     | Find file (open)                         |
+| SPC f s     | Save                                     |
+| SPC SPC     | Search for command (like M-x)            |
+| SPC b b     | buffer list                              |
+| SPC b d     | kill buffer                              |
+| SPC b .     | Buffer Selection Transient State menu    |
+| SPC w F     | Window - new frame (instance)            |
+| SPC w .     | Window Manipulation Transient State menu |
+| SPC w 2     | 2 windows                                |
+| SPC w 3     | 3 windows                                |
+| SPC w m     | Maximise window                          |
+| SPC w d     | Delete window                            |
+| SPC 1       | Go to window 1 (or other number)         |
+| SPC '       | Pop-up terminal                          |
+| SPC t g     | Toggle golden-ratio                      |
+| , '         | Start REPL                               |
+| , s s       | toggle REPL buffer                       |
+| , s n       | Eval namespace                           |
+| , e b       | EvaL buffer                              |
+| , e r       | Eval region                              |
+| , e e       | Eval last expression                     |
+| , e f       | Eval current expression                  |
+|             |                                          |
+
+
 ** Day 21: October 5, 2018
 
 I have a little fantasy that remains in the back of my mind, serving as inspiration for much of what I do.
