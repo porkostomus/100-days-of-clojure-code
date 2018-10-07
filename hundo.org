@@ -59,6 +59,28 @@ and return the number of the last problem answered.
 
 And it passes! Pushing this to GitHub.
 
+Allright... what's next? 
+
+So we've written functions to look up which problem we just answered.
+prob-num returned 2. We need to (get-answer m 2) and pass that to our replacer function.
+
+Wrote the fn get-current-answer and unit test and pushed it.
+
+So then we'll pass that value to the replacer - (and also try out org-mode's code blocks):
+
+#+BEGIN_SRC clojure 
+ (defn replacer [n]
+  (if (= (get-answer n) "")
+    (-main))
+  (loop [tests (:tests (problems (dec n)))
+         replaced []]
+    (if (empty? tests)
+      (evaluator replaced)
+      (recur (rest tests)
+             (conj replaced
+                   (s/replace (first tests) "__" (get-answer n))))))) 
+#+END_SRC
+
 ** Day 22: October 6, 2018
 
 Well that was strange. I was stumped last night why the CSS was not loading on my basic GitHub Pages site.
