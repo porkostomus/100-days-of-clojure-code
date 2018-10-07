@@ -1,5 +1,63 @@
 * 100 Days of Clojure Code
 
+** Day 23: October 7, 2018
+
+Working on [[https://github.com/porkostomus/ctrain][ctrain]], my first Clojure program. It's just a quirky 4clojure terminal test runner,
+and has turned out to be an amazingly fun long-term project because it is growing with me as I continue to improve.
+It's the most "meta" thing I could think of, to learn Clojure by making an app in Clojure for learning Clojure.
+Moreover, the new job I hope to be starting involves building an adaptive learning platform,
+which I see this becoming a tiny seed of.
+
+The way that it currently works is when you submit an answer it spits it out to a separate file on disk.
+I'm changing it so that instead it just takes the original problem hashmap,
+adds a key called :answer set to the value entered by the user,
+and writes it to a file called progress.edn. 
+
+I've also gotten the code much cleaner, with better names.
+But I've still got to finish hooking up the new map.
+
+*** ctrain (Several hours later...)
+
+Much later in the day now, I fell asleep leaving this code a mess because I ran out of gas.
+Now that I've gotten some rest (and coffee!),
+I'm ready to look at it with fresh eyes and figure out what's going on here...
+The most embarrassing problems to get stuck on are the ones I think ought to be simple. 
+
+To recap:
+
+The app used to use the file problems.edn (a vector of maps, one for each problem) just for the problem data,
+and stored each answer in its own file. This is messy and I want to do it better.
+
+The file is now called progress.edn and will be overwritten with the user's answer included in the problem's map.
+The way this works is like this:
+
+The prob-num function reads the file in and returns the number of the most recently answered problem.
+
+Let's write a test for that.
+
+The test will define a data structure containing, say, the first 3 problems, with answers for the first 2.
+It will spit that out to another test file which it will read in and should return 2.
+
+Actually, we need to first test the get-answer function because it is called by prob-num.
+We need to retrieve the value in order to know if it exists or not.
+
+Also, I'm realizing during this bit of TDD that I need to separate the logic from the file I/O.
+
+Therefore the get-answer function will be passed a map of problems and a problem number to query:
+
+(defn get-answer [m n]
+  (:answer (nth m (dec n))))
+
+And that test passes, great so far. More importantly, the function has been decomplected.
+In order to properly test it, it needed to accept any map as input, so I think that was an important detail.
+
+Pushed the test file to GitHub.
+
+Next, we will test the prob-num function. It will take a map as well,
+and will call get-answer on it with each number in a loop,
+and return the number of the last problem answered.
+
+And it passes! Pushing this to GitHub.
 
 ** Day 22: October 6, 2018
 
@@ -32,6 +90,7 @@ This will also be a great opportunity to use org-mode's tables:
 | SPC w 3     | 3 windows                                |
 | SPC w m     | Maximise window                          |
 | SPC w d     | Delete window                            |
+| SPC w u     | Undo last window change                  |
 | SPC 1       | Go to window 1 (or other number)         |
 | SPC '       | Pop-up terminal                          |
 | SPC t g     | Toggle golden-ratio                      |
@@ -42,7 +101,9 @@ This will also be a great opportunity to use org-mode's tables:
 | , e r       | Eval region                              |
 | , e e       | Eval last expression                     |
 | , e f       | Eval current expression                  |
-|             |                                          |
+| , T e       | Toggle enlighten mode                    |
+| M-RET d v   | Inspect                                  |
+| , t a       | Run all tests                            |
 
 
 ** Day 21: October 5, 2018
