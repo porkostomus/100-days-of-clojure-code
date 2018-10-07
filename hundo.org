@@ -81,6 +81,14 @@ So then we'll pass that value to the replacer - (and also try out org-mode's cod
                    (s/replace (first tests) "__" (get-answer n))))))) 
 #+END_SRC
 
+Aw yes, that looks AWESOME!
+
+And there's a keyboard shortcut:
+
+< s TAB
+
+Those 3 keys in order will pop up a cool little template. Org mode rocks!
+
 ** Day 22: October 6, 2018
 
 Well that was strange. I was stumped last night why the CSS was not loading on my basic GitHub Pages site.
