@@ -1,0 +1,339 @@
+* 100 Days of Clojure Code
+
+** Day 23: October 7, 2018
+
+Working on [[https://github.com/porkostomus/ctrain][ctrain]], my first Clojure program. It's just a quirky 4clojure terminal test runner,
+and has turned out to be an amazingly fun long-term project because it is growing with me as I continue to improve.
+It's the most "meta" thing I could think of, to learn Clojure by making an app in Clojure for learning Clojure.
+Moreover, the new job I hope to be starting involves building an adaptive learning platform,
+which I see this becoming a tiny seed of.
+
+The way that it currently works is when you submit an answer it spits it out to a separate file on disk.
+I'm changing it so that instead it just takes the original problem hashmap,
+adds a key called :answer set to the value entered by the user,
+and writes it to a file called progress.edn. 
+
+I've also gotten the code much cleaner, with better names.
+But I've still got to finish hooking up the new map.
+
+*** ctrain (Several hours later...)
+
+Much later in the day now, I fell asleep leaving this code a mess because I ran out of gas.
+Now that I've gotten some rest (and coffee!),
+I'm ready to look at it with fresh eyes and figure out what's going on here...
+The most embarrassing problems to get stuck on are the ones I think ought to be simple. 
+
+To recap:
+
+The app used to use the file problems.edn (a vector of maps, one for each problem) just for the problem data,
+and stored each answer in its own file. This is messy and I want to do it better.
+
+The file is now called progress.edn and will be overwritten with the user's answer included in the problem's map.
+The way this works is like this:
+
+The prob-num function reads the file in and returns the number of the most recently answered problem.
+
+Let's write a test for that.
+
+The test will define a data structure containing, say, the first 3 problems, with answers for the first 2.
+It will spit that out to another test file which it will read in and should return 2.
+
+Actually, we need to first test the get-answer function because it is called by prob-num.
+We need to retrieve the value in order to know if it exists or not.
+
+Also, I'm realizing during this bit of TDD that I need to separate the logic from the file I/O.
+
+Therefore the get-answer function will be passed a map of problems and a problem number to query:
+
+(defn get-answer [m n]
+  (:answer (nth m (dec n))))
+
+And that test passes, great so far. More importantly, the function has been decomplected.
+In order to properly test it, it needed to accept any map as input, so I think that was an important detail.
+
+Pushed the test file to GitHub.
+
+Next, we will test the prob-num function. It will take a map as well,
+and will call get-answer on it with each number in a loop,
+and return the number of the last problem answered.
+
+And it passes! Pushing this to GitHub.
+
+Allright... what's next? 
+
+So we've written functions to look up which problem we just answered.
+prob-num returned 2. We need to (get-answer m 2) and pass that to our replacer function.
+
+Wrote the fn get-current-answer and unit test and pushed it.
+
+So then we'll pass that value to the replacer - (and also try out org-mode's code blocks):
+
+#+BEGIN_SRC clojure 
+ (defn replacer [n]
+  (if (= (get-answer n) "")
+    (-main))
+  (loop [tests (:tests (problems (dec n)))
+         replaced []]
+    (if (empty? tests)
+      (evaluator replaced)
+      (recur (rest tests)
+             (conj replaced
+                   (s/replace (first tests) "__" (get-answer n))))))) 
+#+END_SRC
+
+Aw yes, that looks AWESOME!
+
+And there's a keyboard shortcut:
+
+< s TAB
+
+Those 3 keys in order will pop up a cool little template. Org mode rocks!
+
+Anyway, we need to write a test for it.
+
+Wrote a function and unit test for get-tests.
+It calls prob-num on the collection of problems and returns the vector of tests:
+
+#+BEGIN_SRC clojure
+(defn get-tests [problems]
+  (:tests (nth problems (dec (prob-num problems)))))
+#+END_SRC
+
+And the unit-test:
+
+#+BEGIN_SRC clojure 
+  (def data
+    [{:_id 1, :title "Nothing but the Truth"
+      :tests ["(= __ true)"]
+      :description "Complete the expression so it will evaluate to true."
+      :answer "true"}
+     {:_id 2, :title "Simple Math"
+      :tests ["(= (- 10 (* 2 3)) __)"]
+      :description "Innermost forms are evaluated first."
+      :answer "4"}
+     {:_id 3, :title "Strings"
+      :tests ["(= __ (.toUpperCase \"eat me\"))"]
+      :description "Clojure strings are Java strings, so you can use Java string methods on them."}])
+#+END_SRC
+
+However, we need to find a problem with more than one test:
+
+#+BEGIN_SRC clojure
+  (def other-data
+    [{:_id 6, :title "Vectors"
+      :tests ["(= [__] (list :a :b :c) (vec '(:a :b :c)) (vector :a :b :c))"]
+      :description "Vectors can be constructed several ways.  You can compare them with lists."
+      :answer ":a :b :c"}
+     {:_id 7, :title "conj on vectors"
+      :tests ["(= __ (conj [1 2 3] 4))" "(= __ (conj [1 2] 3 4))"]
+      :description "When operating on a Vector, the conj function will return a new vector with one or more items \"added\" to the end."
+      :answer "[1 2 3 4]"}
+     {:_id 8, :title "Sets"
+      :tests ["(= __ (set '(:a :a :b :c :c :c :c :d :d)))"
+              "(= __ (clojure.set/union #{:a :b :c} #{:b :c :d}))"]
+      :description "Sets are collections of unique values."}])
+#+END_SRC
+
+#+BEGIN_SRC clojure 
+(deftest get-tests-test
+  (is (= ["(= __ (conj [1 2 3] 4))" "(= __ (conj [1 2] 3 4))"]
+             (get-tests other-data))))
+#+END_SRC
+
+And it passes.
+
+While it feels like I'm going tediously slow, I think this test-driven workflow is working quite well.
+And now that I know how to include code blocks, I think I'm starting to hit upon a very nice style of literate programming with this log.
+
+** Day 22: October 6, 2018
+
+Well that was strange. I was stumped last night why the CSS was not loading on my basic GitHub Pages site.
+I tried it in different browsers for like an hour or something, double and triple-checking all the code.
+Then today it works. Guess it just took a long time. 
+
+Would hate to have to ever tell a boss or client,
+"Maybe it will work in the morning?"
+
+Though I suppose we'd likely not be using GitHub Pages.
+Anyhoo, moving on.
+
+*** Spacemacs Notes - make a cheat sheet
+
+Just a concise list of stuff I actually use.
+This will also be a great opportunity to use org-mode's tables:
+
+| Key-binding | Command                                  |
+|-------------+------------------------------------------|
+| SPC f f     | Find file (open)                         |
+| SPC f s     | Save                                     |
+| SPC SPC     | Search for command (like M-x)            |
+| SPC b b     | buffer list                              |
+| SPC b d     | kill buffer                              |
+| SPC b .     | Buffer Selection Transient State menu    |
+| SPC w F     | Window - new frame (instance)            |
+| SPC w .     | Window Manipulation Transient State menu |
+| SPC w 2     | 2 windows                                |
+| SPC w 3     | 3 windows                                |
+| SPC w m     | Maximise window                          |
+| SPC w d     | Delete window                            |
+| SPC w u     | Undo last window change                  |
+| SPC 1       | Go to window 1 (or other number)         |
+| SPC '       | Pop-up terminal                          |
+| SPC t g     | Toggle golden-ratio                      |
+| , '         | Start REPL                               |
+| , s s       | toggle REPL buffer                       |
+| , s n       | Eval namespace                           |
+| , e b       | EvaL buffer                              |
+| , e r       | Eval region                              |
+| , e e       | Eval last expression                     |
+| , e f       | Eval current expression                  |
+| , T e       | Toggle enlighten mode                    |
+| M-RET d v   | Inspect                                  |
+| , t a       | Run all tests                            |
+
+
+** Day 21: October 5, 2018
+
+I have a little fantasy that remains in the back of my mind, serving as inspiration for much of what I do.
+The idea is tied to the practice of keeping configuration files on GitHub,
+but in my case I want to take it to an extreme.
+
+I want to be able to get a new computer and set up my whole environment with a single script.
+
+It's a goal that started during my days of Linux distro-hopping,
+but really has its roots in my earliest days of computing.
+I just really love setting up new systems.
+And every time that I do it, it (hopefully) becomes more streamlined.
+
+Whether or not I ever achieve my goal of a single script, I do think it's worthwhile to keep in mind.
+
+*** Codecademy - CSS course
+
+Launched my [[https://porkostomus.gitlab.io/plain-html/][own instance]] of the Vacation World site
+(for no good reason other than to practice deploying stuff).
+Actually... it's so that I'm documenting my learning instead of doing it mindlessly,
+and at the same time developing a "cookbook" of sorts.
+
+Interesting... I just tried to duplicate what I did on GitHub,
+and I can't figure out why the CSS is not loading [[https://porkostomus.github.io/vacation-world/][here]].
+
+EDIT (following day): Now it works. Weird.
+
+** Day 20
+*** Successfully checked my gmail in spacemacs with mu4e and offlineimap
+
+This could be an entire article of its own.
+In fact, I wrote a tutorial on this last year, but it already broke from something changing.
+It felt like a bit of a "right of passage" into emacs geekdom, kinda like installing Gentoo for Linux.
+
+But here's the way I see it: 
+
+**** Clojurians love emacs
+It's still the most popular Clojure editor, right?
+
+**** Those who love emacs, love to do lots of stuff in emacs
+
+Like check our email.
+As much satisfaction as I'd likely get from making this into a blog post,
+it ought to be enough that the file .offlineimaprc is in my [[https://github.com/porkostomus/spacemacs-config][spacemacs-config]] repo.
+I'll just add the instructions in the README to install offlineimap and mu4e.
+
+As much as I'd love to include a screenshot
+
+*** Having a fight with my browser tabs.
+
+That is, having too many open. Feels like a sign that I'm trying to do too many things at once,
+I'm trying to close tabs to get back to a reasonable number of tasks but everything seems important.
+so... org-mode to the rescue! Let's break down the things I'm actively doing.
+
+**** Codecademy - Web design courses
+
+I used codecademy when I first started getting back into web stuff a few years ago.
+Then, I read [[https://www.makeuseof.com/tag/4-reasons-shouldnt-learn-code-codeacademy/][4 Reasons Why You Shouldn’t Learn to Code With Codeacademy,]]
+which explains that doing that stuff will teach you the syntax, but not how to solve problems.
+That didn't make me stop using the site, but then I felt a little silly about it because I knew that the author was right.
+The big win though from reading it was finding out about Project Euler,
+which turned out to be a great help when I was first learning Clojure.
+
+Now, however, I'm returning to them in order to combat another one of my fears:
+Holes in my knowledge. I can never be ashamed to go back to the beginning.
+I have a fear of becoming "one of those people" (in my imagination?)
+whom I perceive as lacking a solid foundation due to insufficient time in the woodshed.
+
+I refuse to develop for the web without properly understanding the basic web infrastructure.
+
+So that's how I'm justifying spending time doing the basic codecademy courses again.
+So that's a browser tab. And another one for a [[https://www.codecademy.com/learn/learn-navigation-design][pro-level course]] that I want to take while I've got a free week.
+But not only that...
+
+**** Set up a live HTML/CSS [[https://porkostomus.gitlab.io/plain-html/][playground site]] on GitLab
+
+For just testing the codecademy practice sites!
+I ought to do one on GitHub as well, just to keep everything familiar.
+
+That's 2 tabs, for the source code and the site itself.
+
+**** CircleCI
+
+Just seems like it is important. So that's a browser tab.
+
+More info - Here's the official stack listed on my job description:
+
+Leiningen / deps.edn, Re-frame, Reagent and React’s lifecycles
+REST and WebSockets
+NodeJS, NPM and Yarn
+JS / CLJS interop
+CSS Preprocessors and mainstream CSS frameworks
+Proper state management
+UX principles and slick user interfaces
+Data visualisation in SVG and Canvas
+
+Experience with CI, Docker, AWS, Datomic Cloud and Ions is welcome.
+
+So this is the list to keep handy, and will be used to form a solid study plan.
+
+**** jr0cket's spacemacs book
+
+This one is a very high priority. I should probably move this one up to indicate that.
+But I need to learn org-mode...
+
+**** Org-mode manual
+
+See above.
+
+**** Clojurians Slack
+
+Always gotta have this open! Don't know what I'd do without the constant Clojure chatter!
+
+That's actually all. I managed to close several while writing this (like twitter),
+so it proved a valuable exercise. 
+
+*** Now I need to look up the key binding in order to publish this!
+
+I think it was a regular emacs binding like C-c C-e m or something...
+
+Holy crap, I was right.
+
+** Day 19
+Yo, I'm in org mode. Today I'm doing stuff:
+
+*** Codecademy stuff on UI design.
+
+Did the HTML course just for the sake of completeness, and actually learned stuff.
+
+*** Setting up spacemacs
+
+One reason I love Clojure is because I only have one hand, and with Clojure you only need one!
+Seriously... I doubt that any other language encourages such brevity -
+one of Rich's reasons for choosing "nil" over "null" was "It's a little bit shorter"!
+But with Clojure and Vim or Spacemacs Evil Mode, you only need one finger!
+
+Got the cyberpunk theme with the nyan cat and fancy symbols!
+
+*** Moved this journal into org mode
+
+Yes, here we are. Isn't it beautiful?
+
+Then, we can export to markdown. In fact, we can enable GitHub support in the config.
+
+We're gonna need to follow [[http://spacemacs.org/layers/+emacs/org/README.html][this]]. (see that? that's a link, dawg)
