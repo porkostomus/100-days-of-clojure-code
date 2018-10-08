@@ -1,6 +1,51 @@
 * 100 Days of Clojure Code
 
-** Day 23: October 7, 2018
+** Day 24: October 8, 2018
+
+Function names should be verbs. I had been treating them as nouns.
+So now there's ~submit~ and ~evaluate~:
+
+#+BEGIN_SRC clojure
+(defn submit [problems]  
+    (s/replace (get-tests problems)
+               "__"
+               (get-last-answer problems)))
+
+(defn evaluate [answers]
+  (loop [answers answers results []]
+    (if (empty? answers)
+      results
+      (recur
+        (rest answers)
+        (conj results
+          (try
+             (eval (read-string (first answers)))
+             (catch Exception e
+               (println (str "Error evaluating: " (class e) ":" (.getMessage e)))
+               (.printStackTrace e)
+               false)))))))
+#+END_SRC
+
+The function that takes you to the next problem is now appropriately called ~next-prob~:
+
+#+BEGIN_SRC clojure
+(defn next-prob [results]
+  (loop [coll results]
+    (if (empty? coll)
+      (do
+       (println "\nNICE! Here's the next one:")
+       (Thread/sleep 1500)
+       (-main)))
+    (if (= false (first coll))
+       (do
+          (println "\nSorry, try again...")
+          (Thread/sleep 1500)
+          (-main)))
+    (recur (rest coll))))
+#+END_SRC
+
+
+** Day 23: October 7, 2018 - ctrain
 
 Working on [[https://github.com/porkostomus/ctrain][ctrain]], my first Clojure program. It's just a quirky 4clojure terminal test runner,
 and has turned out to be an amazingly fun long-term project because it is growing with me as I continue to improve.
@@ -16,7 +61,7 @@ and writes it to a file called progress.edn.
 I've also gotten the code much cleaner, with better names.
 But I've still got to finish hooking up the new map.
 
-*** ctrain (Several hours later...)
+*** (Several hours later...)
 
 Much later in the day now, I fell asleep leaving this code a mess because I ran out of gas.
 Now that I've gotten some rest (and coffee!),
@@ -35,8 +80,12 @@ The prob-num function reads the file in and returns the number of the most recen
 
 Let's write a test for that.
 
+**** Sanity-check debugging / Test-driven development
+
 The test will define a data structure containing, say, the first 3 problems, with answers for the first 2.
 It will spit that out to another test file which it will read in and should return 2.
+
+***** get-answer
 
 Actually, we need to first test the get-answer function because it is called by prob-num.
 We need to retrieve the value in order to know if it exists or not.
@@ -53,6 +102,8 @@ In order to properly test it, it needed to accept any map as input, so I think t
 
 Pushed the test file to GitHub.
 
+***** prob-num
+
 Next, we will test the prob-num function. It will take a map as well,
 and will call get-answer on it with each number in a loop,
 and return the number of the last problem answered.
@@ -67,6 +118,8 @@ prob-num returned 2. We need to (get-answer m 2) and pass that to our replacer f
 Wrote the fn get-current-answer and unit test and pushed it.
 
 So then we'll pass that value to the replacer - (and also try out org-mode's code blocks):
+
+*** Code blocks! Literate programming!
 
 #+BEGIN_SRC clojure 
  (defn replacer [n]
@@ -89,7 +142,11 @@ And there's a keyboard shortcut:
 
 Those 3 keys in order will pop up a cool little template. Org mode rocks!
 
-Anyway, we need to write a test for it.
+The function itself though, is a piece of work.
+I don't believe that calling ~evaluator~ should have anything to do with it.
+So instead I'm gonna take another approach.
+
+**** get-tests
 
 Wrote a function and unit test for get-tests.
 It calls prob-num on the collection of problems and returns the vector of tests:
@@ -144,6 +201,57 @@ And it passes.
 
 While it feels like I'm going tediously slow, I think this test-driven workflow is working quite well.
 And now that I know how to include code blocks, I think I'm starting to hit upon a very nice style of literate programming with this log.
+
+**** String-replace
+
+So now our replacer function will replace each "__" with the answer:
+
+#+BEGIN_SRC clojure
+  (defn replacer [problems]  
+    (s/replace (get-tests problems)
+               "__"
+               (get-current-answer problems)))
+#+END_SRC
+
+That's all I want it to do. Let's make a test for it:
+
+#+BEGIN_SRC clojure
+  (deftest replacer-test
+    (is (= "[\"(= [1 2 3 4] (conj [1 2 3] 4))\" \"(= [1 2 3 4] (conj [1 2] 3 4))\"]"
+           (replacer other-data))))
+#+END_SRC
+
+So that works. Now can we send it to the evaluator?
+
+#+BEGIN_SRC clojure
+(defn evaluate [answers]
+  (loop [answers answers results []]
+    (if (empty? answers)
+      results
+      (recur
+        (rest answers)
+        (conj results
+          (try
+             (eval (read-string (first answers)))
+             (catch Exception e
+               (println (str "Error evaluating: " (class e) ":" (.getMessage e)))
+               (.printStackTrace e)
+               false)))))))
+#+END_SRC
+
+Yep:
+
+#+BEGIN_SRC clojure
+(deftest evaluate-test
+  (is (= [true true]
+              (evaluate (read-string (replacer data))))))
+#+END_SRC
+
+I think I'll rename ~replacer~ ~submit~.
+
+Lastly there's ~tester~ which I should call ~check~ since they're verbs, silly!
+
+ 
 
 ** Day 22: October 6, 2018
 
