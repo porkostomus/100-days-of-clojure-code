@@ -3,7 +3,8 @@
 ** Day 24: October 8, 2018
 
 Function names should be verbs. I had been treating them as nouns.
-So now there's ~submit~ and ~evaluate~:
+~replacer~ is now ~submit~, and ~evaluator~ is now ~evaluate~.
+For some reason I thought that one was taken already.
 
 #+BEGIN_SRC clojure
 (defn submit [problems]  
@@ -43,6 +44,188 @@ The function that takes you to the next problem is now appropriately called ~nex
           (-main)))
     (recur (rest coll))))
 #+END_SRC
+
+Now I'm not sure how to test the ~next-prob~ function, because it calls main.
+Perhaps I'll change that, and make separate functions for printing the response.
+
+Actually, I spent considerable time already trying to figure out why it isn't working already.
+Now I think it's because I'm simply not advancing to the next problem.
+Where does that happen?
+
+OK back up. Here's our current ~(-main)~ function:
+
+#+BEGIN_SRC clojure
+  (defn -main []
+    (let [problems (read-string (slurp "progress.edn"))
+          n (prob-num problems)]
+      (print-problem n)
+      (answer n)
+      (next-prob (evaluate (read-string (submit problems))))))
+#+END_SRC
+
+So we take in the file, bind it to ~problems~ and call ~prob-num~ on it to determine where we are.
+However, I think there's a silly point that I overlooked...
+We don't know if the last answer is correct or not, only that it has been answered!
+
+I'm not sure how I want to deal with that, but for now I think I'll just have it run that one.
+
+When I say "run", what does that mean? Perhaps I should write a simple predicate function that will test a given problem:
+
+What needs to happen is this: it will begin by finding the last answer and running it.
+I'd rather it do that than use a counter like before. I don't care if it's redundant, let's check it anyway!
+
+However, it will do it silently, and the result will only be used to determine which problem to answer next.
+So the function need not accept a number, it can rely on ~prob-num~ for that:
+
+#+BEGIN_SRC clojure
+  (defn get-answer [problems n]
+    (:answer (nth problems (dec n))))
+
+  (defn prob-num [m]
+    (loop [n 1]
+      (if (get-answer m n)
+        (recur (inc n))
+        (dec n))))
+#+END_SRC
+
+How about I do it like this:
+
+#+BEGIN_SRC clojure
+(defn correct? [results]
+    (if (empty? results)
+           true
+          (if (= false (first results))
+                false
+               (recur (next results)))))
+
+(defn check-last [problems]
+  (correct? (evaluate (read-string (submit problems)))))
+#+END_SRC
+
+Cool, let's write a test for that:
+
+#+BEGIN_SRC clojure
+(deftest check-last-test
+  (is (true? (check-last data)))
+  (is (false? (check-last data-false))))
+#+END_SRC
+
+Now a function to tell us which problem to do next:
+
+#+BEGIN_SRC clojure
+(defn next-prob [problems]
+  (if (check-last problems)
+        (inc (prob-num problems))
+        (prob-num problems)))
+#+END_SRC
+
+And its test:
+
+#+BEGIN_SRC clojure
+(deftest next-prob-test
+  (is (= 3 (next-prob data)))
+  (is (= 2 (next-prob data-false))))
+#+END_SRC
+
+Everything's good. I think all the pieces are done. Let's make a commit.
+
+I've got the program working now, but the messages it reports are out of whack.
+That's because I've written it such that it always runs the most recently answered problem.
+I need to fix that somehow, but I'm pleased with what I've done so far.
+
+Here's the entire code:
+
+#+BEGIN_SRC clojure
+(ns ctrain.core
+  (:require [clojure.string :as s]
+                      [clojure.set :refer :all])
+  (:gen-class))
+
+(declare -main)
+
+(defn evaluate [answers]
+  (loop [answers answers results []]
+    (if (empty? answers)
+      results
+      (recur
+        (rest answers)
+        (conj results
+          (try
+             (eval (read-string (first answers)))
+             (catch Exception e
+               (println (str "Error evaluating: " (class e) ":" (.getMessage e)))
+               (.printStackTrace e)
+               false)))))))
+
+(defn get-answer [problems n]
+  (:answer (nth problems (dec n))))
+
+(defn prob-num [m]
+    (loop [n 1]
+      (if (get-answer m n)
+          (recur (inc n))
+          (dec n))))
+
+(defn get-last-answer [problems]
+    (get-answer problems (prob-num problems)))
+
+(defn get-tests [problems]
+  (:tests (nth problems (dec (prob-num problems)))))
+
+(defn submit [problems]  
+    (s/replace (get-tests problems)
+               "__"
+               (get-last-answer problems)))
+
+(defn get-problem [n]
+  (let [problems (read-string (slurp "progress.edn"))]
+    (nth problems (dec n))))
+
+(defn answer [n]
+  (let [problems (read-string (slurp "progress.edn"))]
+  (spit "progress.edn"
+        (assoc-in problems [(dec n) :answer]
+                  (read-line)))))
+
+(defn correct? [results]
+    (if (empty? results)
+           true
+          (if (= false (first results))
+                false
+               (recur (next results)))))
+
+(defn check-last [problems]
+  (correct? (evaluate (read-string (submit problems)))))
+
+(defn next-prob [problems]
+  (if (check-last problems)
+        (inc (prob-num problems))
+        (prob-num problems)))
+
+(defn print-problem [n]
+  (println (str "\n#" n ": " (:title (get-problem n))))
+  (println (str "\n" (:description (get-problem n)) "\n"))
+  (run! println (:tests (get-problem n))))
+
+(defn -main []
+  (let [problems (read-string (slurp "progress.edn"))]
+    (print-problem (next-prob problems))
+    (answer (next-prob problems))
+    (if (check-last problems)
+      (do
+       (println "\nNICE! Here's the next one:")
+       (Thread/sleep 1500)
+       (-main))
+      (do
+        (println "\nSorry, try again...")
+        (Thread/sleep 1500)
+        (-main)))))
+#+END_SRC
+
+But I'm still not quite satisfied with it - there's probably a better way to handle this -
+One way would be to add another key to the map called ~:solved~ to set to ~true~.
+Perhaps I'll wire that up next. But yay, at least it works!
+
 
 
 ** Day 23: October 7, 2018 - ctrain
