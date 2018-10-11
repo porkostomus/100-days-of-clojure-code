@@ -1,6 +1,102 @@
 * 100 Days of Clojure Code
 
+
+** Day 26: October 10, 2018
+
+Got some stuff figured out.
+
+*** Successfully set up MaGit
+
+Set up a [[https://github.com/porkostomus/clojure-ring][Clojure Ring app]] following the [[http://practicalli.github.io/clojure-webapps/][Practicalli book]] and pushed it to GitHub.
+The only thing I had to do in the browser was actually create the GitHub repo.
+
+So now I just added the about handler & route. How do I push the changes?
+
+Git status, stage, commit, push. That's SPC g s, s, c c, comma comma, P p.
+
+That's a LOT of keys... plus I had to enter my creds again, think I need to do the thing to fix that.
+  
+
+*** Got the layout pretty dope here in Spacemacs.
+
+I need to learn the Babel thing,
+it's exactly what I was wondering about.
+That is, a way to write code in org-mode and run it in Clojure mode. 
+
+I should make another table of shortcuts, for stuff like moving around.
+
+| Key | Action                            |
+|-----+-----------------------------------|
+| f   | to next character (you specify)   |
+| t   | to just before the next character |
+| w   | start of next word                |
+| e   | end of current word               |
+| b   | start of previous word            |
+| *   | to next matching symbol name      |
+| $   | end of current line               |
+| 0   | start of current line             |
+| ^   | start of non-whitespace           |
+| gg  | start of buffer                   |
+| G   | end of buffer                     |
+| : 4 | go to line 4                      |
+| %   | jump to matching parens           |
+| C-u | up half page                      |
+| C-d | down half page                    |
+
+
+
+*** 
+
+** Day 25: October 9, 2018
+
+*** Still more ctrain - endless possibilities here.
+
+Let's make one that just uses an atom and that's it.
+Do I want to just use a counter?
+
+What if I just mapped over the collection of problems?
+
+In that case, it collects all the inputs first, then prints it all!
+
+Whatever... here's what I got so far:
+
+#+BEGIN_SRC clojure
+  (def problems (read-string (slurp "problems.edn")))
+
+  (defn print-prob [n]
+    (println (str "\n#" n ": " (:title (nth problems (dec n)))))
+    (println (str "\n" (:description (nth problems (dec n))) "\n"))
+    (run! println (:tests (nth problems (dec n)))))
+
+  (defn ans [n]
+    (print-prob n)
+    (read-string (s/replace (:tests (nth problems (dec n))) "__" (read-line))))
+
+  (defn evaluate [tests]
+    (loop [tests tests results []]
+      (if (empty? tests)
+        results
+        (recur
+         (rest tests)
+         (conj results
+               (try
+                 (eval (read-string (first tests)))
+                 (catch Exception e
+                   false)))))))
+
+  (defn -main []
+    (loop [n 1]
+      (if (every? true? (evaluate (ans n)))
+        (recur (inc n))
+        (recur n))))
+#+END_SRC
+
+This is about as simple as it gets -
+it shows you the problem, plugs in your answer, evaluates it and returns the results.
+
 ** Day 24: October 8, 2018
+
+*** More ctrain refactoring
 
 Function names should be verbs. I had been treating them as nouns.
 ~replacer~ is now ~submit~, and ~evaluator~ is now ~evaluate~.
@@ -228,6 +324,21 @@ Perhaps I'll wire that up next. But yay, at least it works!
 
 
 
+*** Got a "working" version
+
+But it's quirky. The way it works is this:
+
+It reads in your progress and finds the most recently answered problem and checks it.
+
+A better way would be to make a ~:solved~ key and set it to true when checking it,
+which should happen at a different point.
+
+Another approach would be to store the answer in an atom instead, and only write it to disk when it is correct.
+So the log will contain only correct answers. I kinda like that idea. But kinda want to try both.
+This is a learning project, after all.
+
+Then the inevitable end-game will be to use an actual database.
+
 ** Day 23: October 7, 2018 - ctrain
 
 Working on [[https://github.com/porkostomus/ctrain][ctrain]], my first Clojure program. It's just a quirky 4clojure terminal test runner,
@@ -435,7 +546,6 @@ I think I'll rename ~replacer~ ~submit~.
 Lastly there's ~tester~ which I should call ~check~ since they're verbs, silly!
 
  
-
 ** Day 22: October 6, 2018
 
 Well that was strange. I was stumped last night why the CSS was not loading on my basic GitHub Pages site.
