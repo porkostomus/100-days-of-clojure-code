@@ -1,5 +1,49 @@
 * 100 Days of Clojure Code
 
+** Day 28: October 12, 2018
+
+*** Babel
+
+Babel is a meta-programming language for org-mode.
+
+It's the missing piece that will turn this log into a live coding journal.
+
+The part that I'm excited about is that means I'll only have to type in one file.
+
+I'll call it, "Literate Rambling".
+
+[[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html][Here]] is the documentation for using it with Clojure.
+
+#+begin_src clojure :results silent
+  (+ 1 4)
+#+end_src
+
+Unfortunately I'm getting a message that clojure evaluation is disabled.
+
+I did a thing in .spacemacs, but possibly not the right thing.
+
+Oh and maybe it needs to be in a Clojure project folder. Let's hop over there.
+
+** Day 27: October 11, 2018
+
+*** Refactor Minesweeper
+
+I was working on my [[https://github.com/porkostomus/tsweep][Minesweeper]] game a while back.
+Let's check that out again.
+
+#+BEGIN_SRC clojure
+  (ns tsweep.core
+    (:require [clojure.set :as set]
+              [clojure.string :as str]))
+
+  (def rows 6)
+
+  (def board
+    (for [x (range rows)
+          y (range rows)]
+      [x y])
+
+#+END_SRC
 
 ** Day 26: October 10, 2018
 
@@ -45,7 +89,7 @@ I should make another table of shortcuts, for stuff like moving around.
 
 
 
-*** 
+**** 
 
 ** Day 25: October 9, 2018
 
