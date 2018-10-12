@@ -1,0 +1,14 @@
+Great! It works, let's just make this the new log now.
+
+And I'll upload the new .spacemacs too. Done.
+
+#+begin_src clojure :results silent
+  (+ 1 4)
+#+end_src
+
+#+begin_src clojure :results value
+  [ 1 2 3 4]
+#+end_src
+
+#+RESULTS:
+| 1 | 2 | 3 | 4 |
