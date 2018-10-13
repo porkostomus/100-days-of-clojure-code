@@ -6,7 +6,7 @@ The part that I'm excited about is that means I'll only have to type in one file
 
 I'll call it, "Literate Rambling".
 
-[Here](https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html) is the documentation for using it with Clojure.
+[Here](https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html) is the documentation for using org-babel with Clojure.
 
 ```clojure
 (+ 1 4)
