@@ -20,7 +20,7 @@ Oh and maybe it needs to be in a Clojure project folder. Let's hop over there.
 
 Great! It works, let's just make this the new log now.
 
-And I'll upload the new .spacemacs too. Done.
+And I'll upload the new [.spacemacs](https://github.com/porkostomus/spacemacs-config) too. Done.
 
 ```clojure
 (+ 1 4)
