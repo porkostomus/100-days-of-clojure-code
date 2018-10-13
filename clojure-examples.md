@@ -26,4 +26,4 @@ And I'll upload the new .spacemacs too. Done.
 (save xy-line "incanter-xy-line.png")
 ```
 
-![](./incanter-xy-line.pdf)
+![chart](incanter-xy-line.pdf)
