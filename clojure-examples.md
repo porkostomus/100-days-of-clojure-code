@@ -1,6 +1,6 @@
 Great! It works, let's just make this the new log now.
 
-And I'll upload the new [.spacemacs](https://github.com/porkostomus/spacemacs-config) too. Done.
+And I'll upload the new .spacemacs too. Done.
 
 ```clojure
 (+ 1 4)
@@ -26,4 +26,4 @@ And I'll upload the new [.spacemacs](https://github.com/porkostomus/spacemacs-co
 (save xy-line "incanter-xy-line.png")
 ```
 
-![chart](/incanter-xy-line.png)
+<./incanter-xy-line.pdf>

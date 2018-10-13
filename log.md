@@ -1,773 +1,719 @@
-### Day 19: October 4, 2018
-
-To help me learn spacemacs quickly, I've moved the journal into org mode:
-
-![Org Mode](/2018-10-04-030301_1366x768_scrot.png)
-
-And [Here](/hundo.md) is the auto-generated GitHub-flavored Markdown file which will be the new log. This one will no longer be updated!
-
-### Day Something-or-other: October 3, 2018
-
-Random TIL: I've begun to realize the tremendous utility of GitHub stars. Combines the power of bookmarks with "likes". Projects I've successfully used ought to be starred, so that I can find them easily when, for example, someone asks on Slack what libraries are available for a certain thing.
-
-[jr0cket's Spacemacs guide](https://practicalli.github.io/spacemacs/) is great! While using it to set up my editor, I realized that I had done this before... almost a year ago! I remember because of the cautionary word on using [fancy symbols](https://practicalli.github.io/spacemacs/install-spacemacs/fancify-symbols.html), because I had found the guide while I was specifically searching for how to use that feature! I was a former user of [Emacs Live](https://github.com/overtone/emacs-live), and really loved the fancy symbols and [cyberpunk theme](https://practicalli.github.io/spacemacs/install-spacemacs/add-another-theme.html), so I was glad to see that in there too!
-
-Now all I need to do is install [Nyan Mode](https://github.com/TeMPOraL/nyan-mode), and my emacs experience will be complete.
-
-Right now I'm up to [Spacemacs Basics](https://practicalli.github.io/spacemacs/spacemacs-basics/). I'm gonna take my time because this is really good stuff, and while I used spacemacs before, I mostly used the holy mode since I was used to regular emacs. But then I ended up switching to Vim, partially for the easier bindings (I only type with one hand, and got tired of having to twist so much), and partially for the instant startup (since it's written in C). So now is the time to learn the Evil Mode bindings, and really go into space!
-
-But I won't be dragging my heels, because I'm very excited to get to the part on org mode - and will be switching this journal into that in order to maximize practice and get me to write more. That way I'll spend more time in emacs and cook the shortcuts into my fingers faster, and be more organized and productive for free!
-
-Besides, this file is starting to get stupid-long.
-
-Still learning re-frame. A funny thing I noticed while fiddling with the todomvc example app was the CSS file:
-
-```
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-
-button {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: none;
-	font-size: 100%;
-	vertical-align: baseline;
-	font-family: inherit;
-	font-weight: inherit;
-	color: inherit;
-	-webkit-appearance: none;
-	appearance: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
-	font-smoothing: antialiased;
-}
-
-body {
-	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	line-height: 1.4em;
-	background: #f5f5f5;
-	color: #4d4d4d;
-	min-width: 230px;
-	max-width: 550px;
-	margin: 0 auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
-	font-smoothing: antialiased;
-	font-weight: 300;
-}
-
-button,
-input[type="checkbox"] {
-	outline: none;
-}
-
-.hidden {
-	display: none;
-}
-
-#todoapp {
-	background: #fff;
-	margin: 130px 0 40px 0;
-	position: relative;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-	0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
-#todoapp input::-webkit-input-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #e6e6e6;
-}
-
-#todoapp input::-moz-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #e6e6e6;
-}
-
-#todoapp input::input-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #e6e6e6;
-}
-
-#todoapp h1 {
-	position: absolute;
-	top: -155px;
-	width: 100%;
-	font-size: 100px;
-	font-weight: 100;
-	text-align: center;
-	color: rgba(175, 47, 47, 0.15);
-	-webkit-text-rendering: optimizeLegibility;
-	-moz-text-rendering: optimizeLegibility;
-	text-rendering: optimizeLegibility;
-}
-
-#new-todo,
-.edit {
-	position: relative;
-	margin: 0;
-	width: 100%;
-	font-size: 24px;
-	font-family: inherit;
-	font-weight: inherit;
-	line-height: 1.4em;
-	border: 0;
-	outline: none;
-	color: inherit;
-	padding: 6px;
-	border: 1px solid #999;
-	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
-	font-smoothing: antialiased;
-}
-
-#new-todo {
-	padding: 16px 16px 16px 60px;
-	border: none;
-	background: rgba(0, 0, 0, 0.003);
-	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-}
-
-#main {
-	position: relative;
-	z-index: 2;
-	border-top: 1px solid #e6e6e6;
-}
-
-label[for='toggle-all'] {
-	display: none;
-}
-
-#toggle-all {
-	position: absolute;
-	top: -55px;
-	left: -12px;
-	width: 60px;
-	height: 34px;
-	text-align: center;
-	border: none; /* Mobile Safari */
-}
-
-#toggle-all:before {
-	content: '❯';
-	font-size: 22px;
-	color: #e6e6e6;
-	padding: 10px 27px 10px 27px;
-}
-
-#toggle-all:checked:before {
-	color: #737373;
-}
-
-#todo-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-#todo-list li {
-	position: relative;
-	font-size: 24px;
-	border-bottom: 1px solid #ededed;
-}
-
-#todo-list li:last-child {
-	border-bottom: none;
-}
-
-#todo-list li.editing {
-	border-bottom: none;
-	padding: 0;
-}
-
-#todo-list li.editing .edit {
-	display: block;
-	width: 506px;
-	padding: 13px 17px 12px 17px;
-	margin: 0 0 0 43px;
-}
-
-#todo-list li.editing .view {
-	display: none;
-}
-
-#todo-list li .toggle {
-	text-align: center;
-	width: 40px;
-	/* auto, since non-WebKit browsers doesn't support input styling */
-	height: auto;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto 0;
-	border: none; /* Mobile Safari */
-	-webkit-appearance: none;
-	appearance: none;
-}
-
-#todo-list li .toggle:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
-}
-
-#todo-list li .toggle:checked:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
-}
-
-#todo-list li label {
-	white-space: pre-line;
-	word-break: break-all;
-	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
-	display: block;
-	line-height: 1.2;
-	transition: color 0.4s;
-}
-
-#todo-list li.completed label {
-	color: #d9d9d9;
-	text-decoration: line-through;
-}
-
-#todo-list li .destroy {
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 10px;
-	bottom: 0;
-	width: 40px;
-	height: 40px;
-	margin: auto 0;
-	font-size: 30px;
-	color: #cc9a9a;
-	margin-bottom: 11px;
-	transition: color 0.2s ease-out;
-}
-
-#todo-list li .destroy:hover {
-	color: #af5b5e;
-}
-
-#todo-list li .destroy:after {
-	content: '×';
-}
-
-#todo-list li:hover .destroy {
-	display: block;
-}
-
-#todo-list li .edit {
-	display: none;
-}
-
-#todo-list li.editing:last-child {
-	margin-bottom: -1px;
-}
-
-#footer {
-	color: #777;
-	padding: 10px 15px;
-	height: 20px;
-	text-align: center;
-	border-top: 1px solid #e6e6e6;
-}
-
-#footer:before {
-	content: '';
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	height: 50px;
-	overflow: hidden;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
-	0 8px 0 -3px #f6f6f6,
-	0 9px 1px -3px rgba(0, 0, 0, 0.2),
-	0 16px 0 -6px #f6f6f6,
-	0 17px 2px -6px rgba(0, 0, 0, 0.2);
-}
-
-#todo-count {
-	float: left;
-	text-align: left;
-}
-
-#todo-count strong {
-	font-weight: 300;
-}
-
-#filters {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	position: absolute;
-	right: 0;
-	left: 0;
-}
-
-#filters li {
-	display: inline;
-}
-
-#filters li a {
-	color: inherit;
-	margin: 3px;
-	padding: 3px 7px;
-	text-decoration: none;
-	border: 1px solid transparent;
-	border-radius: 3px;
-}
-
-#filters li a.selected,
-#filters li a:hover {
-	border-color: rgba(175, 47, 47, 0.1);
-}
-
-#filters li a.selected {
-	border-color: rgba(175, 47, 47, 0.2);
-}
-
-#clear-completed,
-html #clear-completed:active {
-	float: right;
-	position: relative;
-	line-height: 20px;
-	text-decoration: none;
-	cursor: pointer;
-	position: relative;
-}
-
-#clear-completed:hover {
-	text-decoration: underline;
-}
-
-#info {
-	margin: 65px auto 0;
-	color: #bfbfbf;
-	font-size: 10px;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	text-align: center;
-}
-
-#info p {
-	line-height: 1;
-}
-
-#info a {
-	color: inherit;
-	text-decoration: none;
-	font-weight: 400;
-}
-
-#info a:hover {
-	text-decoration: underline;
-}
-
-/*
-	Hack to remove background from Mobile Safari.
-	Can't use it globally since it destroys checkboxes in Firefox
-*/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	#toggle-all,
-	#todo-list li .toggle {
-		background: none;
-	}
-
-	#todo-list li .toggle {
-		height: 40px;
-	}
-
-	#toggle-all {
-		-webkit-transform: rotate(90deg);
-		transform: rotate(90deg);
-		-webkit-appearance: none;
-		appearance: none;
-	}
-}
-
-@media (max-width: 430px) {
-	#footer {
-		height: 50px;
-	}
-
-	#filters {
-		bottom: 10px;
-	}
-}
+- [100 Days of Clojure Code](#sec-1)
+  - [Day 28: October 12, 2018](#sec-1-1)
+    - [Babel](#sec-1-1-1)
+  - [Day 27: October 11, 2018](#sec-1-2)
+    - [Refactor Minesweeper](#sec-1-2-1)
+  - [Day 26: October 10, 2018](#sec-1-3)
+    - [Successfully set up MaGit](#sec-1-3-1)
+    - [Got the layout pretty dope here in Spacemacs.](#sec-1-3-2)
+  - [Day 25: October 9, 2018](#sec-1-4)
+    - [Still more ctrain - endless possibilities here.](#sec-1-4-1)
+  - [Day 24: October 8, 2018](#sec-1-5)
+    - [More ctrain refactoring](#sec-1-5-1)
+    - [Got a "working" version](#sec-1-5-2)
+  - [Day 23: October 7, 2018 - ctrain](#sec-1-6)
+    - [(Several hours later&#x2026;)](#sec-1-6-1)
+    - [Code blocks! Literate programming!](#sec-1-6-2)
+  - [Day 22: October 6, 2018](#sec-1-7)
+    - [Spacemacs Notes - make a cheat sheet](#sec-1-7-1)
+  - [Day 21: October 5, 2018](#sec-1-8)
+    - [Codecademy - CSS course](#sec-1-8-1)
+  - [Day 20](#sec-1-9)
+    - [Successfully checked my gmail in spacemacs with mu4e and offlineimap](#sec-1-9-1)
+    - [Having a fight with my browser tabs.](#sec-1-9-2)
+    - [Now I need to look up the key binding in order to publish this!](#sec-1-9-3)
+  - [Day 19](#sec-1-10)
+    - [Codecademy stuff on UI design.](#sec-1-10-1)
+    - [Setting up spacemacs](#sec-1-10-2)
+    - [Moved this journal into org mode](#sec-1-10-3)
+
+# 100 Days of Clojure Code<a id="sec-1"></a>
+
+## Day 28: October 12, 2018<a id="sec-1-1"></a>
+
+### Babel<a id="sec-1-1-1"></a>
+
+Babel is a meta-programming language for org-mode.
+
+It's the missing piece that will turn this log into a live coding journal.
+
+The part that I'm excited about is that means I'll only have to type in one file.
+
+I'll call it, "Literate Rambling".
+
+[Here](https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html) is the documentation for using it with Clojure.
+
+```clojure
+(+ 1 4)
 ```
 
-The reason I pasted all that was to make a point. And that I don't know how to include the expandable-code-snippet-thingy. Maybe I'll figure that out tomorrow.
+Unfortunately I'm getting a message that clojure evaluation is disabled.
 
-The funny part, I thought, was how responsible this is for the look and feel of the app. I don't think it is even mentioned in the docs, because it really has nothing to do with how re-frame works, and it probably came from somewhere else anyway. Here it is with and without it:
+I did a thing in .spacemacs, but possibly not the right thing.
 
-![Todomvc Screenshot](/2018-10-03-175127_1366x768_scrot.png)
+Oh and maybe it needs to be in a Clojure project folder. Let's hop over there.
 
-![no css](/2018-10-03-175549_1366x768_scrot.png)
+## Day 27: October 11, 2018<a id="sec-1-2"></a>
 
-So where to learn how to do good CSS? I suppose the [docs on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS) would be a good start. Looking for any recommendations here. My new career is in UI design, so I want to build a solid foundation. I'll need to be familiar with the preprocessors too (eg. SASS), so perhaps I'll go through the [codecademy](https://www.codecademy.com/learn/learn-sass) stuff again for a refresher.
+### Refactor Minesweeper<a id="sec-1-2-1"></a>
 
-A particular area of focus for me is the psychology of UI design. A [good set of resources](https://design.tutsplus.com/articles/50-totally-free-lessons-in-graphic-design-theory--psd-2916) was mentioned on the [programming throwdown](https://www.programmingthrowdown.com/) podcast.
+I was working on my [Minesweeper](https://github.com/porkostomus/tsweep) game a while back. Let's check that out again.
 
-Another thing I've been doing lately is setting up spacemacs. Anyone know a good guide on that? Just kidding, I'm using [jr0cket's](https://practicalli.github.io/spacemacs/)!
-
-Here's my current [config](https://gist.github.com/porkostomus/951c10777d55c4257546da26e453adbb.js).
-
-### Day 15: September 29, 2018
-
-Finished up the script for the rest of the re-frame example application tutorial video, but I've gotta move straight on to the [todomvc](https://github.com/Day8/re-frame/tree/master/examples/todomvc) app.
-
-Bring it on.
-
-### Day 14: September 28, 2018
-
-So now that I know what I'll be doing for work, I can refocus my learning trajectory to more UI design type stuff. And learning re-frame! Since my first video left off at the 3rd "domino", the second will cover the next 2. I've already prepared the script and done the audio. 
-
-### Day 13: September 27, 2018
-
-Today I've been in a state of utter shock because I had an interview this morning and...
-
-I got the job... and it's in England! Doing re-frame and Datomic!
-
-So soon I'll be having some *serious* Clojure work to do...
-
-In the meantime, here's a [juxt](https://porkostomus.gitlab.io/posts-output/2018-09-27-Just-Juxt-44/).
-
-### Day 12: September 26, 2018
-
-Working on my [minesweeper game](https://porkostomus.gitlab.io/posts-output/2018-08-27-minesweeper/) in Reagent, rewriting the mine-detector that I had in [tsweep](https://github.com/porkostomus/tsweep) which is really funny because that was my very first Clojure project.
-
-Here's my new mine-detector. It's just a set of predicates for whether there's a mine in any of the 8 surrounding squares: 
-
-```
-(defn mine? [x y]
-  (= 1 (get (:matrix @app-state) [x y])))
-(defn left? [x y]
-  (mine? (dec x) y))
-(defn right? [x y]
-  (mine? (inc x) y))
-(defn top? [x y]
-  (mine? x (inc y)))
-(defn bottom? [x y]
-  (mine? x (dec y)))
-(defn top-left? [x y]
-  (mine? (dec x) (inc y)))
-(defn top-right? [x y]
-  (mine? (inc x) (dec y)))
-(defn bottom-left? [x y]
-  (mine? (dec x) (dec y)))
-(defn bottom-right? [x y]
-  (mine? (inc x) (dec y)))
-```
-
-Compared to the old one, which was represented with a single vector (shown here just for the lulz):
-
-```
-(defn left [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (not= 0 (rem square rows))
-            (recur (assoc board square
-			         (conj (get board square)
-					       (dec square)))
-		    (dec square))
-        (recur board (dec square))))))
-
-(defn right [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (not= 0 (rem (inc square) rows))
-            (recur (assoc board square
-                     (conj (get board square)
-                       (inc square)))
-            (dec square))
-        (recur board (dec square))))))
-
-(defn top [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (< rows (inc square))
-            (recur (assoc board square
-              (conj (get board square)
-                (- square rows)))
-            (dec square))
-        (recur board (dec square))))))
-
-(defn bottom [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (> (- (* rows rows) rows) square)
-          (recur (assoc board square
-                   (conj (get board square)
-                         (+ rows square)))
-          (dec square))
-        (recur board (dec square))))))
-
-(defn top-left [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (and (< rows (inc square))
-                 (not= 0 (rem square rows)))
-            (recur (assoc board square
-                     (conj (get board square)
-                       (dec (- square rows))))
-            (dec square))
-    (recur board (dec square))))))
-
-(defn top-right [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (and (< rows (inc square))
-                 (not= 0 (rem (inc square) rows)))
-            (recur (assoc board square
-              (conj (get board square)
-                (inc (- square rows))))
-            (dec square))
-    (recur board (dec square))))))
-
-(defn bottom-left [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (and (> (- (* rows rows) rows) square)
-                 (not= 0 (rem square rows)))
-            (recur (assoc board square
-                     (conj (get board square)
-                       (dec (+ rows square))))
-            (dec square))
-        (recur board (dec square))))))
-
-(defn bottom-right [coll]
-  (loop [board coll square (dec (count coll))]
-    (if (> 0 square)
-         board
-        (if (and (> (- (* rows rows) rows) square)
-                 (not= 0 (rem (inc square) rows)))
-            (recur (assoc board square
-                     (conj (get board square)
-                       (inc (+ rows square))))
-            (dec square))
-        (recur board (dec square))))))
-  ```
-
-I find it quite hilarious, personally. But at the time, it seemed a miracle that I pulled it off at all.
-
-Bonus: It will also come in handy for a Sudoku board.
-
-### Day 11: September 25, 2018
-
-Getting started with [Datomic Ions](https://docs.datomic.com/cloud/ions/ions-tutorial.html). And I *really* mean getting started, with a fresh Linux install. The [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) uses Python, and I haven't even installed `pip` yet, so that's where I'm at:
-
-```
-$ sudo apt install python-pip
-```
-
-```
-$ pip install awscli --upgrade --user
-```
-
-```
-$ aws --version
-aws-cli/1.16.20 Python/2.7.15rc1 Linux/4.15.0-34-generic botocore/1.12.10
-```
-
-So far so good.
-
-### Day 10: September 24, 2018
-
-Mentored a whole bunch of exercisms. Mostly easy ones like Armstrong Numbers and Two-Fer. Could definitely use more active mentors because they tend to pile up if I start slacking, and I feel bad because no one should have to wait several days just to have their solution looked at.
-
-Today's [Just Juxt](https://porkostomus.gitlab.io/posts-output/2018-09-24-Just-Juxt-41/) was a fun one too.
-
-### Day 9: September 23, 2018
-
-**Link to work:**
-
-* [re-frame tutorial Part 1](https://www.youtube.com/watch?v=Xo6W300s1Xs&t=183s)
-
-### Day 8: September 22, 2018
-
-**Today's Progress**: Making a video tutorial out of the re-frame [simple example app](https://github.com/Day8/re-frame/blob/master/docs/CodeWalkthrough.md). Using [soundoftext](https://soundoftext.com/) for the narration,
-and paraphrasing the readme to say just enough to explain what's going on. I began right with installing Java and Leiningen,
-cloning the repo and starting the app, recording my screen in OBS. Once I get enough video footage and audio samples I'll start editing them down in Kdenlive.
-
-When I'm done the finished video will likely be something along the lines of [these](https://www.youtube.com/playlist?list=PLU4xPIn8mcE69QF41HoFaHxw2Whk3h7PQ).
-
-### Day 7: September 21, 2018
-
-**Today's Progress**: A big reason I'm doing this challenge is to prepare myself for a job using Clojure. During a recent interview, I was asked if I had ever used [re-frame](https://github.com/Day8/re-frame). On my resume I have several small projects using [Reagent](http://reagent-project.github.io/), but nothing larger.
-
-I explained myself based on the common advice I've heard regarding the Reagent vs. re-frame debate, which I'll simplify as something like:
-
->Use re-frame if your app is complicated enough to need it, otherwise use Reagent.
-
-So for my personal stuff, the answer was easy. Nothing that I made had enough complexity to require anything but the most basic UI elements.
-
-And that's what we're about to change.
-
-I currently have an [app](https://porkostomus.github.io/elements/) for learning the periodic table of elements. I want to build it up into something that demonstrates different chemical compounds and how they are composed.
-
-The best part is how well documented the framework is, and how many people I've heard express how nice the code is and how worthwhile it will be to learn it. So I'm gonna take my time, and do some screencasts along the way. That way others will be able to learn as well, but my selfish reason is that I've found that I learn best by going through the process of presenting the material as if I were to teach it.
-
-For some inspiration... here is the *entire* example re-frame app:
-
-```
-(ns simple.core
-  (:require [reagent.core :as reagent]
-            [re-frame.core :as rf]
+```clojure
+(ns tsweep.core
+  (:require [clojure.set :as set]
             [clojure.string :as str]))
 
-(defn dispatch-timer-event []
-  (let [now (js/Date.)]
-    (rf/dispatch [:timer now])))
+(def rows 6)
 
-(defonce do-timer (js/setInterval dispatch-timer-event 1000))
+(def board
+  (for [x (range rows)
+        y (range rows)]
+    [x y])
 
-(rf/reg-event-db
-  :initialize
-  (fn [_ _]
-    {:time (js/Date.)
-     :time-color "#f88"}))
-
-(rf/reg-event-db
-  :time-color-change
-  (fn [db [_ new-color-value]]
-    (assoc db :time-color new-color-value)))
-
-(rf/reg-event-db
-  :timer
-  (fn [db [_ new-time]]
-    (assoc db :time new-time)))
-
-(rf/reg-sub
-  :time
-  (fn [db _]
-    (:time db)))
-
-(rf/reg-sub
-  :time-color
-  (fn [db _]
-    (:time-color db)))
-
-(defn clock []
-  [:div.example-clock
-   {:style {:color @(rf/subscribe [:time-color])}}
-   (-> @(rf/subscribe [:time])
-       .toTimeString
-       (str/split " ")
-       first)])
-
-(defn color-input []
-  [:div.color-input
-   "Time color: "
-   [:input {:type "text"
-            :value @(rf/subscribe [:time-color])
-            :on-change #(rf/dispatch [:time-color-change (-> % .-target .-value)])}]])
-
-(defn ui []
-  [:div
-   [:h1 "Yo dawg, it is now"]
-   [clock]
-   [color-input]])
-
-(defn ^:export run []
-  (rf/dispatch-sync [:initialize])
-  (reagent/render [ui]
-                  (js/document.getElementById "app")))
 ```
 
-It shows the time on the screen, updating every second, with an input field letting you pick the color.
+## Day 26: October 10, 2018<a id="sec-1-3"></a>
 
-See the docs for the version with all the comments, which someone did such a great job on only for me to edit them back out so that I can show how tiny the code is. This is a complete framework!
+Got some stuff figured out.
 
+### Successfully set up MaGit<a id="sec-1-3-1"></a>
 
-### Day 6: September 20, 2018
+Set up a [Clojure Ring app](https://github.com/porkostomus/clojure-ring) following the [Practicalli book](http://practicalli.github.io/clojure-webapps/) and pushed it to GitHub. The only thing I had to do in the browser was actually create the GitHub repo.
 
-**Today's Progress**: Just Juxt #37: Re-implement map (4clojure #118), Make a Lisp Part 2
+So now I just added the about handler & route. How do I push the changes?
 
-**Thoughts:** I wanted to cut to the chase and get right into the interpreter, using self-hosted Clojurescript and none of that low-level readline business. More along the lines of the one in SICP. Eric Normand shared one of the most basic ones I've seen on the [Apropos show](https://youtu.be/WFWZlbpZ4Qg), so I figured that would be a good place to start.
+Git status, stage, commit, push. That's SPC g s, s, c c, comma comma, P p.
 
-**Link to work:**
+That's a LOT of keys&#x2026; plus I had to enter my creds again, think I need to do the thing to fix that.
 
-* [Just Juxt #37](https://porkostomus.gitlab.io/posts-output/2018-09-20-Just-Juxt-37/)
-* [Make a Lisp Part 2](https://porkostomus.gitlab.io/posts-output/2018-09-20-day-6/)
+### Got the layout pretty dope here in Spacemacs.<a id="sec-1-3-2"></a>
 
-### Day 5: September 19, 2018
+I need to learn the Babel thing, it's exactly what I was wondering about. That is, a way to write code in org-mode and run it in Clojure mode.
 
-**Today's Progress**: Just Juxt #36: The Balance of N (4clojure #115), Make a Lisp in Clojure
+I should make another table of shortcuts, for stuff like moving around.
 
-**Thoughts:** For awhile I've been looking at the [Make a Lisp](https://github.com/kanaka/mal) project and fiddled around with various implementations, particularly C and Bash, but for this challenge decided to do it in Clojure.
+| Key | Action                            |
+|--- |--------------------------------- |
+| f   | to next character (you specify)   |
+| t   | to just before the next character |
+| w   | start of next word                |
+| e   | end of current word               |
+| b   | start of previous word            |
+| \*  | to next matching symbol name      |
+| $   | end of current line               |
+| 0   | start of current line             |
+| ^   | start of non-whitespace           |
+| gg  | start of buffer                   |
+| G   | end of buffer                     |
+| : 4 | go to line 4                      |
+| %   | jump to matching parens           |
+| C-u | up half page                      |
+| C-d | down half page                    |
 
-**Link to work:**
+1.  
 
-* [Just Juxt #36](https://porkostomus.gitlab.io/posts-output/2018-09-19-Just-Juxt-36/)
-* [Make a Lisp in Clojure](https://porkostomus.gitlab.io/posts-output/2018-09-19-day-5/)
+## Day 25: October 9, 2018<a id="sec-1-4"></a>
 
-### Day 4: September 18, 2018
+### Still more ctrain - endless possibilities here.<a id="sec-1-4-1"></a>
 
-**Today's Progress**: Just Juxt #35: Game of Life (4clojure #94)
+Let's make one that just uses an atom and that's it. Do I want to just use a counter?
 
-**Thoughts:** Today while working on ctrain (adding more problems to it) I started getting some very perplexing behavior, when I edited a file that was `slurp`ed in it was still printing the same wrong file. I renamed it, and still no change. I tried to `slurp` the new name, and got an error. It truly made no sense.
+What if I just mapped over the collection of problems?
 
-Eventually I realized that my terminal was still SSH'd into my other machine.
+In that case, it collects all the inputs first, then prints it all!
 
-I mentored numerous [Exercism](https://exercism.io/) solutions today, because one of the most active mentors is on vacation so I've had to up my game considerably. Lots of new folks doing the first exercises! I learn a lot from reading them and picking them apart, and try to give very careful feedback, because I realize that I've taken the responsibility of assisting people in their first exposure to Clojure!
+Whatever&#x2026; here's what I got so far:
 
-And today's Just Just was a fun one too, Conway's Game of Life!
+```clojure
+(def problems (read-string (slurp "problems.edn")))
 
-**Link to work:**
+(defn print-prob [n]
+  (println (str "\n#" n ": " (:title (nth problems (dec n)))))
+  (println (str "\n" (:description (nth problems (dec n))) "\n"))
+  (run! println (:tests (nth problems (dec n)))))
 
-* [Just Juxt #35](https://porkostomus.gitlab.io/posts-output/2018-09-18-Just-Juxt-35/)
-* [ctrain](https://github.com/porkostomus/ctrain)
-* [Exercism](https://exercism.io/)
+(defn ans [n]
+  (print-prob n)
+  (read-string (s/replace (:tests (nth problems (dec n))) "__" (read-line))))
 
-### Day 3: September 17, 2018
+(defn evaluate [tests]
+  (loop [tests tests results []]
+    (if (empty? tests)
+      results
+      (recur
+       (rest tests)
+       (conj results
+             (try
+               (eval (read-string (first tests)))
+               (catch Exception e
+                 false)))))))
 
-**Today's Progress**: Just Juxt #34: Read Roman numerals (4clojure #92)
+(defn -main []
+  (loop [n 1]
+    (if (every? true? (evaluate (ans n)))
+      (recur (inc n))
+      (recur n))))
+```
 
-**Thoughts:** Fun fact: [Subtractive notation](https://en.wikipedia.org/wiki/Subtractive_notation) was not the original pattern for Roman numerals. I wonder how much this change had to do with making clock faces appear more balanced.
+This is about as simple as it gets - it shows you the problem, plugs in your answer, evaluates it and returns the results.
 
-Today was very exciting for me because yesterday's challenge was completed... by a fellow participant! I received a [pull request](https://github.com/porkostomus/ctrain/commit/5fadbea52f3da219fbfd81fe70d92b1b6501439c) from [kazesberger](https://github.com/kazesberger) addressing the issue that I spoke of yesterday. Now that the app functions properly, I can work on expanding it. The dataset only included the first 87 problems, the rest I believe were submitted over time, which I plan to do as well, and then maybe add problems from other sources for my own big custom learning app. 
+## Day 24: October 8, 2018<a id="sec-1-5"></a>
 
-I also did some work on [Cryogen Now!](https://gitlab.com/cryogenweb/cryogenweb.gitlab.io), a forkable template I made so that people can get a Clojure static site running on Gitlab Pages in just a few clicks. It took me way too long to get the configuration right, and don't want anyone to ever have to go through that. Github has [Jekyll Now](https://github.com/barryclark/jekyll-now) which uses Ruby, and now we've got one too!
+### More ctrain refactoring<a id="sec-1-5-1"></a>
 
-**Link to work:**
+Function names should be verbs. I had been treating them as nouns. `replacer` is now `submit`, and `evaluator` is now `evaluate`. For some reason I thought that one was taken already.
 
-* [Just Juxt #34](https://porkostomus.gitlab.io/posts-output/2018-09-17-Just-Juxt-34/)
-* [ctrain](https://github.com/porkostomus/ctrain)
-* [Cryogen Now!](https://gitlab.com/cryogenweb/cryogenweb.gitlab.io)
+```clojure
+(defn submit [problems]  
+    (s/replace (get-tests problems)
+               "__"
+               (get-last-answer problems)))
 
-### Day 2: September 16, 2018
+(defn evaluate [answers]
+  (loop [answers answers results []]
+    (if (empty? answers)
+      results
+      (recur
+        (rest answers)
+        (conj results
+          (try
+             (eval (read-string (first answers)))
+             (catch Exception e
+               (println (str "Error evaluating: " (class e) ":" (.getMessage e)))
+               (.printStackTrace e)
+               false)))))))
+```
 
-**Today's Progress**: Published Just Juxt #33: Graph Connectivity (4clojure #91)
+The function that takes you to the next problem is now appropriately called `next-prob`:
 
-**Thoughts:** I wrote a [blog post](https://porkostomus.gitlab.io/posts-output/2018-09-16-day-2/) about my ctrain app that I started awhile back and got stuck. I did this in the spirit of public struggling - I spend so much time looking at other people's solutions that I end up spending proportionally less on figuring them out myself - and found myself trying to do it again with this challenge. So I wanted to do something that I knew I didn't know how to solve. Sure, it feels like a bit of a copout using something that I started 9 months ago, but hey, there are still 98 more days left of this challenge! I could spend a day revisiting each one of my projects, and still have most of the days left for trying new things. I feel like it's utilizing the challenge for a good purpose.
+```clojure
+(defn next-prob [results]
+  (loop [coll results]
+    (if (empty? coll)
+      (do
+       (println "\nNICE! Here's the next one:")
+       (Thread/sleep 1500)
+       (-main)))
+    (if (= false (first coll))
+       (do
+          (println "\nSorry, try again...")
+          (Thread/sleep 1500)
+          (-main)))
+    (recur (rest coll))))
+```
 
-Though I couldn't figure out how to fix a certain bug, the program I made does work! In fact, I made [several Clojure tutorial videos](https://www.youtube.com/watch?v=fdB5dhPXiXc&list=PLU4xPIn8mcE69QF41HoFaHxw2Whk3h7PQ) with it.
+Now I'm not sure how to test the `next-prob` function, because it calls main. Perhaps I'll change that, and make separate functions for printing the response.
 
-**Link to work:**
+Actually, I spent considerable time already trying to figure out why it isn't working already. Now I think it's because I'm simply not advancing to the next problem. Where does that happen?
 
-* [Just Juxt #33](https://porkostomus.gitlab.io/posts-output/2018-09-16-Just-Juxt-33/)
-* [ctrain](https://github.com/porkostomus/ctrain)
+OK back up. Here's our current `(-main)` function:
 
-### Day 1: September 15, 2018
+```clojure
+(defn -main []
+  (let [problems (read-string (slurp "progress.edn"))
+        n (prob-num problems)]
+    (print-problem n)
+    (answer n)
+    (next-prob (evaluate (read-string (submit problems))))))
+```
 
-**Today's Progress**: Published Just Juxt #32: Cartesian Product (4clojure #90)
+So we take in the file, bind it to `problems` and call `prob-num` on it to determine where we are. However, I think there's a silly point that I overlooked&#x2026; We don't know if the last answer is correct or not, only that it has been answered!
 
-**Thoughts:** I decided to merge my existing project into the challenge, since I've been doing the 4clojure problems for the past month for Just Juxt. However, in the spirit of 100 Days Of Code, I will be extending the amount of time I spend on them. The format I've been using is a Cryogen blog with KLIPSE snippets, which I find to be very effective for both working on the exercises as well as presenting them. Each article includes a cljs.test framework for the problem, and having the code actually running in the browser is the best way to know that it works!
+I'm not sure how I want to deal with that, but for now I think I'll just have it run that one.
 
-I also enjoy producing Clojure tutorials and stuff on my [YouTube channel](https://www.youtube.com/bobbytowers), so if something seems particularly inspiring during the challenge, I'll post a video on it!
+When I say "run", what does that mean? Perhaps I should write a simple predicate function that will test a given problem:
 
-**Link to work:** [Just Juxt #32](https://porkostomus.gitlab.io/posts-output/2018-09-15-Just-Juxt-32/)
+What needs to happen is this: it will begin by finding the last answer and running it. I'd rather it do that than use a counter like before. I don't care if it's redundant, let's check it anyway!
+
+However, it will do it silently, and the result will only be used to determine which problem to answer next. So the function need not accept a number, it can rely on `prob-num` for that:
+
+```clojure
+(defn get-answer [problems n]
+  (:answer (nth problems (dec n))))
+
+(defn prob-num [m]
+  (loop [n 1]
+    (if (get-answer m n)
+      (recur (inc n))
+      (dec n))))
+```
+
+How about I do it like this:
+
+```clojure
+(defn correct? [results]
+    (if (empty? results)
+           true
+          (if (= false (first results))
+                false
+               (recur (next results)))))
+
+(defn check-last [problems]
+  (correct? (evaluate (read-string (submit problems)))))
+```
+
+Cool, let's write a test for that:
+
+```clojure
+(deftest check-last-test
+  (is (true? (check-last data)))
+  (is (false? (check-last data-false))))
+```
+
+Now a function to tell us which problem to do next:
+
+```clojure
+(defn next-prob [problems]
+  (if (check-last problems)
+        (inc (prob-num problems))
+        (prob-num problems)))
+```
+
+And its test:
+
+```clojure
+(deftest next-prob-test
+  (is (= 3 (next-prob data)))
+  (is (= 2 (next-prob data-false))))
+```
+
+Everything's good. I think all the pieces are done. Let's make a commit.
+
+I've got the program working now, but the messages it reports are out of whack. That's because I've written it such that it always runs the most recently answered problem. I need to fix that somehow, but I'm pleased with what I've done so far.
+
+Here's the entire code:
+
+```clojure
+(ns ctrain.core
+  (:require [clojure.string :as s]
+                      [clojure.set :refer :all])
+  (:gen-class))
+
+(declare -main)
+
+(defn evaluate [answers]
+  (loop [answers answers results []]
+    (if (empty? answers)
+      results
+      (recur
+        (rest answers)
+        (conj results
+          (try
+             (eval (read-string (first answers)))
+             (catch Exception e
+               (println (str "Error evaluating: " (class e) ":" (.getMessage e)))
+               (.printStackTrace e)
+               false)))))))
+
+(defn get-answer [problems n]
+  (:answer (nth problems (dec n))))
+
+(defn prob-num [m]
+    (loop [n 1]
+      (if (get-answer m n)
+          (recur (inc n))
+          (dec n))))
+
+(defn get-last-answer [problems]
+    (get-answer problems (prob-num problems)))
+
+(defn get-tests [problems]
+  (:tests (nth problems (dec (prob-num problems)))))
+
+(defn submit [problems]  
+    (s/replace (get-tests problems)
+               "__"
+               (get-last-answer problems)))
+
+(defn get-problem [n]
+  (let [problems (read-string (slurp "progress.edn"))]
+    (nth problems (dec n))))
+
+(defn answer [n]
+  (let [problems (read-string (slurp "progress.edn"))]
+  (spit "progress.edn"
+        (assoc-in problems [(dec n) :answer]
+                  (read-line)))))
+
+(defn correct? [results]
+    (if (empty? results)
+           true
+          (if (= false (first results))
+                false
+               (recur (next results)))))
+
+(defn check-last [problems]
+  (correct? (evaluate (read-string (submit problems)))))
+
+(defn next-prob [problems]
+  (if (check-last problems)
+        (inc (prob-num problems))
+        (prob-num problems)))
+
+(defn print-problem [n]
+  (println (str "\n#" n ": " (:title (get-problem n))))
+  (println (str "\n" (:description (get-problem n)) "\n"))
+  (run! println (:tests (get-problem n))))
+
+(defn -main []
+  (let [problems (read-string (slurp "progress.edn"))]
+    (print-problem (next-prob problems))
+    (answer (next-prob problems))
+    (if (check-last problems)
+      (do
+       (println "\nNICE! Here's the next one:")
+       (Thread/sleep 1500)
+       (-main))
+      (do
+        (println "\nSorry, try again...")
+        (Thread/sleep 1500)
+        (-main)))))
+```
+
+But I'm still not quite satisfied with it - there's probably a better way to handle this - One way would be to add another key to the map called `:solved` to set to `true`. Perhaps I'll wire that up next. But yay, at least it works!
+
+### Got a "working" version<a id="sec-1-5-2"></a>
+
+But it's quirky. The way it works is this:
+
+It reads in your progress and finds the most recently answered problem and checks it.
+
+A better way would be to make a `:solved` key and set it to true when checking it, which should happen at a different point.
+
+Another approach would be to store the answer in an atom instead, and only write it to disk when it is correct. So the log will contain only correct answers. I kinda like that idea. But kinda want to try both. This is a learning project, after all.
+
+Then the inevitable end-game will be to use an actual database.
+
+## Day 23: October 7, 2018 - ctrain<a id="sec-1-6"></a>
+
+Working on [ctrain](https://github.com/porkostomus/ctrain), my first Clojure program. It's just a quirky 4clojure terminal test runner, and has turned out to be an amazingly fun long-term project because it is growing with me as I continue to improve. It's the most "meta" thing I could think of, to learn Clojure by making an app in Clojure for learning Clojure. Moreover, the new job I hope to be starting involves building an adaptive learning platform, which I see this becoming a tiny seed of.
+
+The way that it currently works is when you submit an answer it spits it out to a separate file on disk. I'm changing it so that instead it just takes the original problem hashmap, adds a key called :answer set to the value entered by the user, and writes it to a file called progress.edn.
+
+I've also gotten the code much cleaner, with better names. But I've still got to finish hooking up the new map.
+
+### (Several hours later&#x2026;)<a id="sec-1-6-1"></a>
+
+Much later in the day now, I fell asleep leaving this code a mess because I ran out of gas. Now that I've gotten some rest (and coffee!), I'm ready to look at it with fresh eyes and figure out what's going on here&#x2026; The most embarrassing problems to get stuck on are the ones I think ought to be simple.
+
+To recap:
+
+The app used to use the file problems.edn (a vector of maps, one for each problem) just for the problem data, and stored each answer in its own file. This is messy and I want to do it better.
+
+The file is now called progress.edn and will be overwritten with the user's answer included in the problem's map. The way this works is like this:
+
+The prob-num function reads the file in and returns the number of the most recently answered problem.
+
+Let's write a test for that.
+
+1.  Sanity-check debugging / Test-driven development
+
+    The test will define a data structure containing, say, the first 3 problems, with answers for the first 2. It will spit that out to another test file which it will read in and should return 2.
+    
+    1.  get-answer
+    
+        Actually, we need to first test the get-answer function because it is called by prob-num. We need to retrieve the value in order to know if it exists or not.
+        
+        Also, I'm realizing during this bit of TDD that I need to separate the logic from the file I/O.
+        
+        Therefore the get-answer function will be passed a map of problems and a problem number to query:
+        
+        (defn get-answer [m n] (:answer (nth m (dec n))))
+        
+        And that test passes, great so far. More importantly, the function has been decomplected. In order to properly test it, it needed to accept any map as input, so I think that was an important detail.
+        
+        Pushed the test file to GitHub.
+    
+    2.  prob-num
+    
+        Next, we will test the prob-num function. It will take a map as well, and will call get-answer on it with each number in a loop, and return the number of the last problem answered.
+        
+        And it passes! Pushing this to GitHub.
+        
+        Allright&#x2026; what's next?
+        
+        So we've written functions to look up which problem we just answered. prob-num returned 2. We need to (get-answer m 2) and pass that to our replacer function.
+        
+        Wrote the fn get-current-answer and unit test and pushed it.
+        
+        So then we'll pass that value to the replacer - (and also try out org-mode's code blocks):
+
+### Code blocks! Literate programming!<a id="sec-1-6-2"></a>
+
+```clojure
+(defn replacer [n]
+ (if (= (get-answer n) "")
+   (-main))
+ (loop [tests (:tests (problems (dec n)))
+        replaced []]
+   (if (empty? tests)
+     (evaluator replaced)
+     (recur (rest tests)
+            (conj replaced
+                  (s/replace (first tests) "__" (get-answer n))))))) 
+```
+
+Aw yes, that looks AWESOME!
+
+And there's a keyboard shortcut:
+
+< s TAB
+
+Those 3 keys in order will pop up a cool little template. Org mode rocks!
+
+The function itself though, is a piece of work. I don't believe that calling `evaluator` should have anything to do with it. So instead I'm gonna take another approach.
+
+1.  get-tests
+
+    Wrote a function and unit test for get-tests. It calls prob-num on the collection of problems and returns the vector of tests:
+    
+    ```clojure
+    (defn get-tests [problems]
+      (:tests (nth problems (dec (prob-num problems)))))
+    ```
+    
+    And the unit-test:
+    
+    ```clojure
+    (def data
+      [{:_id 1, :title "Nothing but the Truth"
+        :tests ["(= __ true)"]
+        :description "Complete the expression so it will evaluate to true."
+        :answer "true"}
+       {:_id 2, :title "Simple Math"
+        :tests ["(= (- 10 (* 2 3)) __)"]
+        :description "Innermost forms are evaluated first."
+        :answer "4"}
+       {:_id 3, :title "Strings"
+        :tests ["(= __ (.toUpperCase \"eat me\"))"]
+        :description "Clojure strings are Java strings, so you can use Java string methods on them."}])
+    ```
+    
+    However, we need to find a problem with more than one test:
+    
+    ```clojure
+    (def other-data
+      [{:_id 6, :title "Vectors"
+        :tests ["(= [__] (list :a :b :c) (vec '(:a :b :c)) (vector :a :b :c))"]
+        :description "Vectors can be constructed several ways.  You can compare them with lists."
+        :answer ":a :b :c"}
+       {:_id 7, :title "conj on vectors"
+        :tests ["(= __ (conj [1 2 3] 4))" "(= __ (conj [1 2] 3 4))"]
+        :description "When operating on a Vector, the conj function will return a new vector with one or more items \"added\" to the end."
+        :answer "[1 2 3 4]"}
+       {:_id 8, :title "Sets"
+        :tests ["(= __ (set '(:a :a :b :c :c :c :c :d :d)))"
+                "(= __ (clojure.set/union #{:a :b :c} #{:b :c :d}))"]
+        :description "Sets are collections of unique values."}])
+    ```
+    
+    ```clojure
+    (deftest get-tests-test
+      (is (= ["(= __ (conj [1 2 3] 4))" "(= __ (conj [1 2] 3 4))"]
+                 (get-tests other-data))))
+    ```
+    
+    And it passes.
+    
+    While it feels like I'm going tediously slow, I think this test-driven workflow is working quite well. And now that I know how to include code blocks, I think I'm starting to hit upon a very nice style of literate programming with this log.
+
+2.  String-replace
+
+    So now our replacer function will replace each "\_\_" with the answer:
+    
+    ```clojure
+    (defn replacer [problems]  
+      (s/replace (get-tests problems)
+                 "__"
+                 (get-current-answer problems)))
+    ```
+    
+    That's all I want it to do. Let's make a test for it:
+    
+    ```clojure
+    (deftest replacer-test
+      (is (= "[\"(= [1 2 3 4] (conj [1 2 3] 4))\" \"(= [1 2 3 4] (conj [1 2] 3 4))\"]"
+             (replacer other-data))))
+    ```
+    
+    So that works. Now can we send it to the evaluator?
+    
+    ```clojure
+    (defn evaluate [answers]
+      (loop [answers answers results []]
+        (if (empty? answers)
+          results
+          (recur
+            (rest answers)
+            (conj results
+              (try
+                 (eval (read-string (first answers)))
+                 (catch Exception e
+                   (println (str "Error evaluating: " (class e) ":" (.getMessage e)))
+                   (.printStackTrace e)
+                   false)))))))
+    ```
+    
+    Yep:
+    
+    ```clojure
+    (deftest evaluate-test
+      (is (= [true true]
+                  (evaluate (read-string (replacer data))))))
+    ```
+    
+    I think I'll rename `replacer` `submit`.
+    
+    Lastly there's `tester` which I should call `check` since they're verbs, silly!
+
+## Day 22: October 6, 2018<a id="sec-1-7"></a>
+
+Well that was strange. I was stumped last night why the CSS was not loading on my basic GitHub Pages site. I tried it in different browsers for like an hour or something, double and triple-checking all the code. Then today it works. Guess it just took a long time.
+
+Would hate to have to ever tell a boss or client, "Maybe it will work in the morning?"
+
+Though I suppose we'd likely not be using GitHub Pages. Anyhoo, moving on.
+
+### Spacemacs Notes - make a cheat sheet<a id="sec-1-7-1"></a>
+
+Just a concise list of stuff I actually use. This will also be a great opportunity to use org-mode's tables:
+
+| Key-binding | Command                                  |
+|----------- |---------------------------------------- |
+| SPC f f     | Find file (open)                         |
+| SPC f s     | Save                                     |
+| SPC SPC     | Search for command (like M-x)            |
+| SPC b b     | buffer list                              |
+| SPC b d     | kill buffer                              |
+| SPC b .     | Buffer Selection Transient State menu    |
+| SPC w F     | Window - new frame (instance)            |
+| SPC w .     | Window Manipulation Transient State menu |
+| SPC w 2     | 2 windows                                |
+| SPC w 3     | 3 windows                                |
+| SPC w m     | Maximise window                          |
+| SPC w d     | Delete window                            |
+| SPC w u     | Undo last window change                  |
+| SPC 1       | Go to window 1 (or other number)         |
+| SPC '       | Pop-up terminal                          |
+| SPC t g     | Toggle golden-ratio                      |
+| , '         | Start REPL                               |
+| , s s       | toggle REPL buffer                       |
+| , s n       | Eval namespace                           |
+| , e b       | EvaL buffer                              |
+| , e r       | Eval region                              |
+| , e e       | Eval last expression                     |
+| , e f       | Eval current expression                  |
+| , T e       | Toggle enlighten mode                    |
+| M-RET d v   | Inspect                                  |
+| , t a       | Run all tests                            |
+
+## Day 21: October 5, 2018<a id="sec-1-8"></a>
+
+I have a little fantasy that remains in the back of my mind, serving as inspiration for much of what I do. The idea is tied to the practice of keeping configuration files on GitHub, but in my case I want to take it to an extreme.
+
+I want to be able to get a new computer and set up my whole environment with a single script.
+
+It's a goal that started during my days of Linux distro-hopping, but really has its roots in my earliest days of computing. I just really love setting up new systems. And every time that I do it, it (hopefully) becomes more streamlined.
+
+Whether or not I ever achieve my goal of a single script, I do think it's worthwhile to keep in mind.
+
+### Codecademy - CSS course<a id="sec-1-8-1"></a>
+
+Launched my [own instance](https://porkostomus.gitlab.io/plain-html/) of the Vacation World site (for no good reason other than to practice deploying stuff). Actually&#x2026; it's so that I'm documenting my learning instead of doing it mindlessly, and at the same time developing a "cookbook" of sorts.
+
+Interesting&#x2026; I just tried to duplicate what I did on GitHub, and I can't figure out why the CSS is not loading [here](https://porkostomus.github.io/vacation-world/).
+
+EDIT (following day): Now it works. Weird.
+
+## Day 20<a id="sec-1-9"></a>
+
+### Successfully checked my gmail in spacemacs with mu4e and offlineimap<a id="sec-1-9-1"></a>
+
+This could be an entire article of its own. In fact, I wrote a tutorial on this last year, but it already broke from something changing. It felt like a bit of a "right of passage" into emacs geekdom, kinda like installing Gentoo for Linux.
+
+But here's the way I see it:
+
+1.  Clojurians love emacs
+
+    It's still the most popular Clojure editor, right?
+
+2.  Those who love emacs, love to do lots of stuff in emacs
+
+    Like check our email. As much satisfaction as I'd likely get from making this into a blog post, it ought to be enough that the file .offlineimaprc is in my [spacemacs-config](https://github.com/porkostomus/spacemacs-config) repo. I'll just add the instructions in the README to install offlineimap and mu4e.
+    
+    As much as I'd love to include a screenshot
+
+### Having a fight with my browser tabs.<a id="sec-1-9-2"></a>
+
+That is, having too many open. Feels like a sign that I'm trying to do too many things at once, I'm trying to close tabs to get back to a reasonable number of tasks but everything seems important. so&#x2026; org-mode to the rescue! Let's break down the things I'm actively doing.
+
+1.  Codecademy - Web design courses
+
+    I used codecademy when I first started getting back into web stuff a few years ago. Then, I read [4 Reasons Why You Shouldn’t Learn to Code With Codeacademy,](https://www.makeuseof.com/tag/4-reasons-shouldnt-learn-code-codeacademy/) which explains that doing that stuff will teach you the syntax, but not how to solve problems. That didn't make me stop using the site, but then I felt a little silly about it because I knew that the author was right. The big win though from reading it was finding out about Project Euler, which turned out to be a great help when I was first learning Clojure.
+    
+    Now, however, I'm returning to them in order to combat another one of my fears: Holes in my knowledge. I can never be ashamed to go back to the beginning. I have a fear of becoming "one of those people" (in my imagination?) whom I perceive as lacking a solid foundation due to insufficient time in the woodshed.
+    
+    I refuse to develop for the web without properly understanding the basic web infrastructure.
+    
+    So that's how I'm justifying spending time doing the basic codecademy courses again. So that's a browser tab. And another one for a [pro-level course](https://www.codecademy.com/learn/learn-navigation-design) that I want to take while I've got a free week. But not only that&#x2026;
+
+2.  Set up a live HTML/CSS [playground site](https://porkostomus.gitlab.io/plain-html/) on GitLab
+
+    For just testing the codecademy practice sites! I ought to do one on GitHub as well, just to keep everything familiar.
+    
+    That's 2 tabs, for the source code and the site itself.
+
+3.  CircleCI
+
+    Just seems like it is important. So that's a browser tab.
+    
+    More info - Here's the official stack listed on my job description:
+    
+    Leiningen / deps.edn, Re-frame, Reagent and React’s lifecycles REST and WebSockets NodeJS, NPM and Yarn JS / CLJS interop CSS Preprocessors and mainstream CSS frameworks Proper state management UX principles and slick user interfaces Data visualisation in SVG and Canvas
+    
+    Experience with CI, Docker, AWS, Datomic Cloud and Ions is welcome.
+    
+    So this is the list to keep handy, and will be used to form a solid study plan.
+
+4.  jr0cket's spacemacs book
+
+    This one is a very high priority. I should probably move this one up to indicate that. But I need to learn org-mode&#x2026;
+
+5.  Org-mode manual
+
+    See above.
+
+6.  Clojurians Slack
+
+    Always gotta have this open! Don't know what I'd do without the constant Clojure chatter!
+    
+    That's actually all. I managed to close several while writing this (like twitter), so it proved a valuable exercise.
+
+### Now I need to look up the key binding in order to publish this!<a id="sec-1-9-3"></a>
+
+I think it was a regular emacs binding like C-c C-e m or something&#x2026;
+
+Holy crap, I was right.
+
+## Day 19<a id="sec-1-10"></a>
+
+Yo, I'm in org mode. Today I'm doing stuff:
+
+### Codecademy stuff on UI design.<a id="sec-1-10-1"></a>
+
+Did the HTML course just for the sake of completeness, and actually learned stuff.
+
+### Setting up spacemacs<a id="sec-1-10-2"></a>
+
+One reason I love Clojure is because I only have one hand, and with Clojure you only need one! Seriously&#x2026; I doubt that any other language encourages such brevity - one of Rich's reasons for choosing "nil" over "null" was "It's a little bit shorter"! But with Clojure and Vim or Spacemacs Evil Mode, you only need one finger!
+
+Got the cyberpunk theme with the nyan cat and fancy symbols!
+
+### Moved this journal into org mode<a id="sec-1-10-3"></a>
+
+Yes, here we are. Isn't it beautiful?
+
+Then, we can export to markdown. In fact, we can enable GitHub support in the config.
+
+We're gonna need to follow [this](http://spacemacs.org/layers/+emacs/org/README.html). (see that? that's a link, dawg)
