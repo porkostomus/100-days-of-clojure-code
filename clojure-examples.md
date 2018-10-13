@@ -1,9 +1,6 @@
 Babel is a meta-programming language for org-mode.
-
 It's the missing piece that will turn this log into a live coding journal.
-
 The part that I'm excited about is that means I'll only have to type in one file.
-
 I'll call it, "Literate Rambling".
 
 [Here](https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-clojure.html) is the documentation for using org-babel with Clojure.
@@ -13,13 +10,9 @@ I'll call it, "Literate Rambling".
 ```
 
 Unfortunately I'm getting a message that clojure evaluation is disabled.
-
 I did a thing in .spacemacs, but possibly not the right thing.
-
 Oh and maybe it needs to be in a Clojure project folder. Let's hop over there.
-
 Great! It works, let's just make this the new log now.
-
 And I'll upload the new [.spacemacs](https://github.com/porkostomus/spacemacs-config) too. Done.
 
 ```clojure
