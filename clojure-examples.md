@@ -47,3 +47,5 @@ And I'll upload the new [.spacemacs](https://github.com/porkostomus/spacemacs-co
 ```
 
 ![chart](./incanter-xy-line.png)
+
+This chart was actually generated from within org-mode. Nice!
