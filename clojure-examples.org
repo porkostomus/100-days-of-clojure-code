@@ -12,3 +12,22 @@ And I'll upload the new .spacemacs too. Done.
 
 #+RESULTS:
 | 1 | 2 | 3 | 4 |
+
+#+begin_src clojure :results value
+  (def small-map {:a 2 :b 4 :c 8})
+  (:b small-map)
+#+end_src
+
+#+RESULTS:
+: #'user/small-map4
+
+#+begin_src clojure
+  (use '(incanter core charts pdf))
+  ;;; Create the x and y data:
+  (def x-data [0.0 1.0 2.0 3.0 4.0 5.0])
+  (def y-data [2.3 9.0 2.6 3.1 8.1 4.5])
+  (def xy-line (xy-plot x-data y-data))
+  (view xy-line)
+  (save-pdf xy-line "incanter-xy-line.pdf")
+  (save xy-line "incanter-xy-line.png")
+#+end_src
