@@ -47,3 +47,4 @@ Here's my actual screen:
 
 ![Screenshot](/2018-10-12-193431_1366x768_scrot.png)
 ![Histogram](/2018-10-13-175035_1366x768_scrot.png)
+![Sine Wave](/2018-10-13-175838_1366x768_scrot.png)
