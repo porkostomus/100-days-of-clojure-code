@@ -72,34 +72,17 @@ void editorDrawRows(struct abuf *ab) {
 
 [[./2018-10-14-233606_1366x768_scrot.png]]
 
-Now note the difference here:
+Now instead of feeding the substring of ~render~ into ~abAppend()~ with this line:
 
 #+BEGIN_SRC c
-void editorDrawRows(struct abuf *ab) {
-  int y;
-  for (y = 0; y < E.screenrows; y++) {
-    int filerow = y + E.rowoff;
-    if (filerow >= E.numrows) {
-      if (E.numrows == 0 && y == E.screenrows / 3) {
-        char welcome[80];
-        int welcomelen = snprintf(welcome, sizeof(welcome),
-          "Bob, the Text Editor");
-        if (welcomelen > E.screencols) welcomelen = E.screencols;
-        int padding = (E.screencols - welcomelen) / 2;
-        if (padding) {
-          abAppend(ab, "~", 1);
-          padding--;
-        }
-        while (padding--) abAppend(ab, " ", 1);
-        abAppend(ab, welcome, welcomelen);
-      } else {
-        abAppend(ab, "~", 1);
-      }
-    } else {
-      int len = E.row[filerow].rsize - E.coloff;
-      if (len < 0) len = 0;
-      if (len > E.screencols) len = E.screencols;
-      char *c = &E.row[filerow].render[E.coloff];
+abAppend(ab, &E.row[filerow].render[E.coloff], len);
+#+END_SRC
+
+Rather, we will loop through the characters and use ~isdigit()~ on each one to test if it is a digit character.
+If it is, we precede it with the <esc>[31m escape sequence and follow it by the <esc>[39m sequence:
+
+#+BEGIN_SRC c
+char *c = &E.row[filerow].render[E.coloff];
       int j;
       for (j = 0; j < len; j++) {
         if (isdigit(c[j])) {
@@ -110,15 +93,9 @@ void editorDrawRows(struct abuf *ab) {
           abAppend(ab, &c[j], 1);
         }
       }
-    }
-    abAppend(ab, "\x1b[K", 3);
-    abAppend(ab, "\r\n", 2);
-  }
-}
 #+END_SRC
 
 [[./2018-10-14-233941_1366x768_scrot.png]]
-
 
 ** Day 29: October 13, 2018
 
