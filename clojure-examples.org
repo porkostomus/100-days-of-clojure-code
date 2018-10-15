@@ -1,6 +1,64 @@
 * 100 Days of Clojure Code
 
 
+
+** Day 31: October 15, 2018
+
+*** Clojure Algorithm performance tests
+
+A couple different motivations for this.
+One is just to practice making graphs with Incanter,
+so I thought, "What would be something useful I could measure?"
+And more obviously, to learn stuff. Moar smart stuff...
+
+I was a high-school dropout who followed a music career,
+only to finally get my GED at age 30 and go to community college.
+Point being that I never learned any math. None, besides very basic algebra.
+
+I find this a rather embarrassing fact, that I'm trying to teach myself programming when I don't know math.
+There's just something not right there, especially in a programming paradigm so data-centered.
+This is why a big chunk of my time must go to madly trying to fill in these major gaps in my education.
+
+This ought to involve both a "bottom-up" approach of learning the fundamentals in some logical order,
+as well as a "top-down" approach of finding what will be most relevant in my field and attacking that.
+
+This is what I feel to be a nice synthesis of the two approaches.
+So where to start?
+
+**** Time complexity: Order of growth of common algorithms
+
+My idea is to select an algorithm with a known order of growth,
+implement it in Clojure, and chart its execution time with Incanter.
+
+| Time Complexity | Notation   | Algorithm                                 |
+|-----------------+------------+-------------------------------------------|
+| Constant time   | O(1)       | Lookup table                              |
+| Logarithmic     | O(log n)   | Binary search                             |
+| Linear          | O(n)       | Find item in unsorted list                |
+| Linearithmic    | O(n log n) | Merge sort                                |
+| Quadratic       | O(n^2)     | Bubble sort                               |
+| Polynomial      | O(n^c)     | Tree-adjoining grammar parsing            |
+| Exponential     | O(c^n)     | Travelling salesman - dynamic programming |
+| Factorial       | O(n!)      | Travelling salesman - brute force         |
+
+I guess we could start with an easy one, like linear time.
+Find an item in a unsorted list. So we'll take sets of integers of different sizes and shuffle them:
+
+#+BEGIN_SRC clojure
+(shuffle (range 10))
+#+END_SRC
+
+#+RESULTS:
+| 1 | 8 | 7 | 0 | 3 | 5 | 6 | 4 | 9 | 2 |
+
+
+*** pREPL Alpha released in Clojure 1.10
+
+I do know one project that is already using this to check out.
+My goal is to use it in my text editor, because it sounds really great:
+The simplicity of Socket REPL, but in structured EDN format.
+That way you can properly deal with what is a return value, what is printed and what's an error or whatever.
+
 ** Day 30: October 14, 2018
 
 Going to turn [[https://github.com/porkostomus/bob][Bob the Text Editor]] into a Clojure editor.
