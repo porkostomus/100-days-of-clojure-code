@@ -19,6 +19,26 @@ I might just do something really silly like...
 
 Send it out to Planck. Ha ha. No, really.
 
+We'll just set up a key binding, like Ctrl+Enter or something,
+which will actually be just an "alternative save".
+That is, instead of saving the entire file,
+it will save only the form preceding the cursor.
+
+Yes, so we're saving the form to a text file.
+This is really not much different from a REPL history file,
+but is a temporary file that will be overwritten with a single form,
+evaluated with planck and the result spit to another file,
+which can then be read into a separate "results" buffer!
+
+
+Let's do an experiment just to test out scripting with [[http://planck-repl.org/][Planck]].
+
+*** Planck
+
+[[http://planck-repl.org/guide-all.html][Here]] is the full user guide.
+
+
+
 *** Plan of action
 
 First, let's just take a look at the existing methods of Clojure code analysis and presentation.
