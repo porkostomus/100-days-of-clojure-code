@@ -103,6 +103,49 @@ A couple of issues I can think of:
 1. I'm conflating the time it takes to shuffle it with the search itself.
 2. I should be measuring the worst-case scenario, instead of a "random scenario" that I'm doing here.
 
+To address this, I'll define the lists ahead of time, and reverse them instead of shuffling them:
+
+#+BEGIN_SRC clojure
+(def list-10 (reverse (range 10)))
+(def list-100 (reverse (range 100)))
+(def list-1000 (reverse (range 1000)))
+(def list-10000 (reverse (range 10000)))
+(def list-100000 (reverse (range 100000)))
+(def list-1000000 (reverse (range 1000000)))
+
+(time (loop [n 0 l list-10]
+      (if (zero? (nth l n))
+        [l n]
+        (recur (inc n) l))))
+#+END_SRC
+
+Results:
+
+|  Digits |          msecs |
+|---------+----------------|
+|      10 |       0.977336 |
+|     100 |       2.470361 |
+|    1000 |      19.616862 |
+|   10000 |      386.23202 |
+|  100000 |   83758.810631 |
+| 1000000 | 8412869.398572 |
+
+#+begin_src clojure
+  (use '(incanter core charts))
+  ;;; Create the x and y data:
+  (def digits [10 100 1000 10000 100000 1000000])
+  (def time [0.977336 2.470361 19.616862 386.23202 83758.810631 8412869.398572])
+  (def xy-line (xy-plot digits time))
+  (view xy-line)
+  (save xy-line "linear-xy-line-2.png")
+#+end_src
+
+#+CAPTION: Find item in list
+#+NAME: fig:xy-line
+[[./linear-xy-line-2.png]]
+
+It's the exact same curve!
+
 
 *** pREPL Alpha released in Clojure 1.10
 
