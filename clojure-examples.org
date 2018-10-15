@@ -1,5 +1,20 @@
 * 100 Days of Clojure Code
 
+
+** Day 30: October 14, 2018
+
+Going to turn [[https://github.com/porkostomus/bob][Bob the Text Editor]] into a Clojure editor.
+I've been thinking about this for awhile,
+and I believe I have a basic plan of attack.
+
+It will begin with syntax highlighting.
+Which I think is the least useful feature,
+but it makes sense to start there because besides being a useful exercise,
+it is the logical first step towards a Clojure-aware editor.
+The ability to recognize Clojure forms.
+
+
+
 ** Day 29: October 13, 2018
 
 *** More minesweeper business
@@ -99,3 +114,13 @@ Try an example: sample 1,000 values from a standard-normal distribution and view
 
 #+RESULTS:
 : nil#object[org.jfree.chart.ChartFrame 0xc83b84f "org.jfree.chart.ChartFrame[frame1,0,0,500x400,layout=java.awt.BorderLayout,title=Incanter Plot,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,2,25,496x368,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]"]
+
+Try another simple example, a plot of the sine function over the range -10 to 10:
+
+#+BEGIN_SRC clojure
+(view (function-plot sin -10 10))
+#+END_SRC
+
+#+RESULTS:
+: #object[org.jfree.chart.ChartFrame 0xb0e4542 "org.jfree.chart.ChartFrame[frame2,0,0,500x400,layout=java.awt.BorderLayout,title=Incanter Plot,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,5,25,490x370,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]"]
+
