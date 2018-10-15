@@ -19,6 +19,19 @@ I might just do something really silly like...
 
 Send it out to Planck. Ha ha. No, really.
 
+*** Plan of action
+
+First, let's just take a look at the existing methods of Clojure code analysis and presentation.
+
+Of particular interest is Rebel Readline,
+because it provides such useful features in an editor-agnostic way.
+
+*** Syntax highlighting
+
+As an introduction, let's take a look at the way it is done for the C language.
+
+
+
 ** Day 29: October 13, 2018
 
 *** More minesweeper business
