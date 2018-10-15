@@ -9,7 +9,8 @@ Progress will also be tweeted from [porkostomus](https://twitter.com/porkostomus
 
 * [Rules](rules.md)
 * [Log 1](log.md)
-* [Log 2 (current progress)](log.org)
+* [Log 2](log.org)
+* [Log 3 (current progress)](clojure-examples.org)
 * [FAQ](FAQ.md)
 * [Resources](resources.md)
 * [Another 10days of Clojure example](https://github.com/natenka/100-days-of-Clojure)
