@@ -13,7 +13,11 @@ but it makes sense to start there because besides being a useful exercise,
 it is the logical first step towards a Clojure-aware editor.
 The ability to recognize Clojure forms.
 
+The plan is to use (initially) something really simple,
+like Socket REPL or pREPL, but even before that,
+I might just do something really silly like...
 
+Send it out to Planck. Ha ha. No, really.
 
 ** Day 29: October 13, 2018
 
