@@ -98,6 +98,12 @@ Let's make a chart of that:
 
 As we can see it looks like sort of linear growth, but something funny happens at around 100000 digits.
 
+A couple of issues I can think of:
+
+1. I'm conflating the time it takes to shuffle it with the search itself.
+2. I should be measuring the worst-case scenario, instead of a "random scenario" that I'm doing here.
+
+
 *** pREPL Alpha released in Clojure 1.10
 
 I do know one project that is already using this to check out.
