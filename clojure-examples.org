@@ -32,7 +32,9 @@ As an introduction, let's take a look at the way it is done for the C language.
 
 Fortunately there is a great [[https://viewsourcecode.org/snaptoken/kilo/07.syntaxHighlighting.html][guide by snaptoken]] available.
 
-First we can do something very simple, like turn all the numbers red:
+First we can do something very simple, like turn all the numbers red.
+
+Here's our ~editorDrawRows~ function:
 
 #+BEGIN_SRC c
 void editorDrawRows(struct abuf *ab) {
@@ -43,7 +45,45 @@ void editorDrawRows(struct abuf *ab) {
       if (E.numrows == 0 && y == E.screenrows / 3) {
         char welcome[80];
         int welcomelen = snprintf(welcome, sizeof(welcome),
-          "Kilo editor -- version %s", KILO_VERSION);
+          "Bob, the text editor");
+        if (welcomelen > E.screencols) welcomelen = E.screencols;
+        int padding = (E.screencols - welcomelen) / 2;
+        if (padding) {
+          abAppend(ab, " ", 1);
+          padding--;
+        }
+        while (padding--) abAppend(ab, " ", 1);
+        abAppend(ab, welcome, welcomelen);
+      } else {
+        abAppend(ab, " ", 1);
+      }
+    } else {
+      int len = E.row[filerow].rsize - E.coloff;
+      if (len < 0) len = 0;
+      if (len > E.screencols) len = E.screencols;
+      abAppend(ab, &E.row[filerow].render[E.coloff], len);
+    }
+    abAppend(ab, "\x1b[K", 3);
+    abAppend(ab, "\r\n", 2);
+  }
+}
+
+#+END_SRC
+
+[[./2018-10-14-233606_1366x768_scrot.png]]
+
+Now note the difference here:
+
+#+BEGIN_SRC c
+void editorDrawRows(struct abuf *ab) {
+  int y;
+  for (y = 0; y < E.screenrows; y++) {
+    int filerow = y + E.rowoff;
+    if (filerow >= E.numrows) {
+      if (E.numrows == 0 && y == E.screenrows / 3) {
+        char welcome[80];
+        int welcomelen = snprintf(welcome, sizeof(welcome),
+          "Bob, the Text Editor");
         if (welcomelen > E.screencols) welcomelen = E.screencols;
         int padding = (E.screencols - welcomelen) / 2;
         if (padding) {
@@ -76,6 +116,9 @@ void editorDrawRows(struct abuf *ab) {
   }
 }
 #+END_SRC
+
+[[./2018-10-14-233941_1366x768_scrot.png]]
+
 
 ** Day 29: October 13, 2018
 
