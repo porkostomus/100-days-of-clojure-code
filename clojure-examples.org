@@ -41,6 +41,8 @@ implement it in Clojure, and chart its execution time with Incanter.
 | Exponential     | O(c^n)     | Travelling salesman - dynamic programming |
 | Factorial       | O(n!)      | Travelling salesman - brute force         |
 
+***** Linear time - find item in list
+
 I guess we could start with an easy one, like linear time.
 Find an item in a unsorted list. So we'll take sets of integers of different sizes and shuffle them:
 
@@ -119,6 +121,9 @@ To address this, I'll define the lists ahead of time, and reverse them instead o
         (recur (inc n) l))))
 #+END_SRC
 
+#+RESULTS:
+: #'user/list-10#'user/list-100#'user/list-1000#'user/list-10000#'user/list-100000#'user/list-1000000class java.lang.IllegalArgumentExceptionclass java.lang.IllegalArgumentExceptionIllegalArgumentException Key must be integer  clojure.lang.APersistentVector.invoke (APersistentVector.java:294)
+
 Results:
 
 |  Digits |          msecs |
@@ -140,12 +145,74 @@ Results:
   (save xy-line "linear-xy-line-2.png")
 #+end_src
 
+#+RESULTS:
+: nil#'user/digits#'user/time#'user/xy-line#object[org.jfree.chart.ChartFrame 0x63574932 "org.jfree.chart.ChartFrame[frame1,0,0,500x400,layout=java.awt.BorderLayout,title=Incanter Plot,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,5,25,490x370,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]"]nil
+
 #+CAPTION: Find item in list
 #+NAME: fig:xy-line
 [[./linear-xy-line-2.png]]
 
 It's the exact same curve!
 
+
+
+
+***** Quadratic time - bubble sort
+
+#+BEGIN_SRC clojure
+(defn- bubble [ys x]
+  (if-let [y (peek ys)]
+    (if (> y x)
+      (conj (pop ys) x y)
+      (conj ys x))
+    [x]))
+
+(defn bubble-sort [xs]
+  (let [ys (reduce bubble [] xs)]
+    (if (= xs ys)
+      xs
+      (recur ys))))
+
+(bubble-sort list-10)
+#+END_SRC
+
+#+RESULTS:
+: #'user/bubble#'user/bubble-sort[0 1 2 3 4 5 6 7 8 9]
+
+We can probably reuse the above collections, since they are maximally un-sorted already.
+
+| Digits |          msecs |
+|--------+----------------|
+|     10 |         2.5688 |
+|    100 |      58.625717 |
+|   1000 |    2079.451468 |
+|  10000 |   27072.646706 |
+| 100000 | 2189811.479082 |
+|        |                |
+
+I'm afraid to try a million.
+
+#+begin_src clojure
+  (use '(incanter core charts))
+  ;;; Create the x and y data:
+  (def digits [10 100 1000 10000 100000 100000])
+  (def time [2.5688 58.625717 2079.451468 27072.646706 2189811.479082])
+  (def xy-line (xy-plot digits time))
+  (view xy-line)
+  (save xy-line "bubble.png")
+#+end_src
+
+#+RESULTS:
+: nil#'user/digits#'user/time#'user/xy-line#object[org.jfree.chart.ChartFrame 0xb1d9f81 "org.jfree.chart.ChartFrame[frame3,0,0,500x400,invalid,layout=java.awt.BorderLayout,title=Incanter Plot,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,2,25,496x368,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]"]nil
+
+
+#+CAPTION: Bubble Sort
+#+NAME: fig:xy-line
+[[./bubble.png]]
+
+What? It's that same chart again...
+
+Is somebody messing with me?
 
 *** pREPL Alpha released in Clojure 1.10
 
