@@ -214,6 +214,61 @@ What? It's that same chart again...
 
 Is somebody messing with me?
 
+What am I doing wrong?
+
+Let's try a more efficient one, like merge sort.
+
+
+
+***** Linearithmic - merge sort
+
+#+BEGIN_SRC clojure
+(defn merge-sort [coll]
+  (if (or (empty? coll) (= 1 (count coll)))
+    coll
+    (let [[l1 l2] (split-at (/ (count coll) 2) coll)]
+      (loop [r [] l1 (merge-sort l1) l2 (merge-sort l2)]
+        (cond (empty? l1) (into r l2)
+              (empty? l2) (into r l1)
+              :else (if (> 0 (compare (first l1) (first l2)))
+                      (recur (conj r (first l1)) (rest l1) l2)
+                      (recur (conj r (first l2)) l1 (rest l2))))))))
+
+(def list-10 (reverse (range 10)))
+
+(merge-sort list-10)
+#+END_SRC
+
+#+RESULTS:
+: #'user/merge-sort#'user/list-10[0 1 2 3 4 5 6 7 8 9]
+
+| Digits |       msecs |
+|--------+-------------|
+|     10 |    0.161835 |
+|    100 |    0.722971 |
+|   1000 |    7.229004 |
+|  10000 |  101.244589 |
+| 100000 | 1378.267681 |
+
+#+begin_src clojure
+  (use '(incanter core charts))
+  ;;; Create the x and y data:
+  (def digits [10 100 1000 10000 100000 100000])
+  (def time [0.161835 0.722971 7.229004 101.244589 1378.267681])
+  (def xy-line (xy-plot digits time))
+  (view xy-line)
+  (save xy-line "merge.png")
+#+end_src
+
+#+RESULTS:
+: nil#'user/digits#'user/time#'user/xy-line#object[org.jfree.chart.ChartFrame 0x5001ec25 "org.jfree.chart.ChartFrame[frame1,0,0,500x400,layout=java.awt.BorderLayout,title=Incanter Plot,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,5,25,490x370,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]"]nil
+
+
+#+CAPTION: Merge Sort
+#+NAME: fig:xy-line
+[[./merge.png]]
+
+
 *** pREPL Alpha released in Clojure 1.10
 
 I do know one project that is already using this to check out.
