@@ -193,7 +193,9 @@ char *C_HL_keywords[] = {
 };
 #+END_SRC
 
-So what I'll do here is make one for Clojure:
+So what I'll do here is make one for Clojure.
+The names followed by a pipe (|) are the ones that are orange in Rebel Readline,
+
 
 #+BEGIN_SRC c
 char *Clj_HL_keywords[] = {
@@ -219,7 +221,14 @@ char *Clj_HL_keywords[] = {
   "group-by|", "get-in|", "contains?|", "find|", "key|", "keys|", "val|", "vals|",
   "assoc-in|", "dissoc|", "merge|", "merge-with|", "select-keys|", "update-in|",
   "subseq|", "rsubseq|", "list|", "list*|", "first|", "rest|", "cons|", "set|", "hash-set|",
-  "sorted-set|", "sorted-set-by|", "disj|", "filter|", "remove|",   NULL
+  "sorted-set|", "sorted-set-by|", "disj|", "filter|", "remove|", "take-nth|",
+  "concat|", "mapcat|", "cycle|", "interleave|", "interpose|", "nthrest|", "next|",
+  "fnext|", "nnext|", "drop|", "drop-while|", "take-last|", "take|", "take-while|",
+  "butlast|", "drop-last|", "flatten|", "partition|", "partition-all|", "partition-by|",
+  "split-at|", "split-with|", "shuffle|", "sort|", "sort-by|", "second|", "last|",
+  "ffirst|", "nfirst|", "nthnext|", "rand-nth|", "max-key|", "min-key|", "reductions|",
+  "into-array|", "to-array-2d|", "dorun|", "doall|", "realized?|", "seq|", "repeat|",
+  "repeatedly|", "iterate|", "range|", "tree-seq|", "keep|", "keep-indexed|", NULL
 }; 
 #+END_SRC
 
