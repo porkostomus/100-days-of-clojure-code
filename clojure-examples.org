@@ -81,11 +81,13 @@ Let's see how it colors it:
 (+ 
       (recur n))))
 #+END_SRC
+ 
+I see that on GitHub it colors the Special Forms red, functions violet, and keywords and other vals blue.
 
 Let's see how Rebel Readline does it.
 
 ~defn~, ~if~, ~loop~, ~recur~, ~try~, ~catch~ etc are also blue, then all function names are yellow.
-A dark yellow, anyway. Then keywords are a pale yellow.
+A dark yellow anyway (possibly orange?). Then keywords are a pale yellow.
 
 So we're gonna need some sort of lookup table with words in it.
 
@@ -228,10 +230,14 @@ char *Clj_HL_keywords[] = {
   "split-at|", "split-with|", "shuffle|", "sort|", "sort-by|", "second|", "last|",
   "ffirst|", "nfirst|", "nthnext|", "rand-nth|", "max-key|", "min-key|", "reductions|",
   "into-array|", "to-array-2d|", "dorun|", "doall|", "realized?|", "seq|", "repeat|",
-  "repeatedly|", "iterate|", "range|", "tree-seq|", "keep|", "keep-indexed|", NULL
+  "repeatedly|", "iterate|", "range|", "tree-seq|", "keep|", "keep-indexed|",
+  "bit-and|", "bit-or|", "bit-xor|", "bit-not|", "bit-flip|", "bit-set|",
+  "bit-shift-right|", "bit-shift-left|", "bit-and-not|", "bit-clear|", "bit-test|",
+  "unsigned-bit-shift-right|", NULL
 }; 
 #+END_SRC
 
+Alright, that's all of them that are on [[http://cljs.info/cheatsheet/][this cheat sheet]].
 
 ** Day 31: October 15, 2018
 
