@@ -1,5 +1,227 @@
 * 100 Days of Clojure Code
 
+** Day 32: October 16, 2018
+
+*** Syntax highlighting
+
+Wikipedia article on [[https://en.wikipedia.org/wiki/ANSI_escape_code][ANSI escape codes]]
+
+Here's our existing ~erow~ struct:
+
+#+BEGIN_SRC c
+typedef struct erow {
+  int size;
+  int rsize;
+  char *chars;
+  char *render;
+} erow;
+#+END_SRC
+
+We're going to add an array of unsigned char values (integers in the range of 0 to 255)
+to store the highlighting data, called ~hl~:
+
+#+BEGIN_SRC c
+unsigned char *hl;
+#+END_SRC
+
+Now add it to our ~editorInsertRow~ function:
+
+#+BEGIN_SRC c
+void editorInsertRow(int at, char *s, size_t len) {
+  if (at < 0 || at > E.numrows) return;
+  E.row = realloc(E.row, sizeof(erow) * (E.numrows + 1));
+  memmove(&E.row[at + 1], &E.row[at], sizeof(erow) * (E.numrows - at));
+  E.row[at].size = len;
+  E.row[at].chars = malloc(len + 1);
+  memcpy(E.row[at].chars, s, len);
+  E.row[at].chars[len] = '\0';
+  E.row[at].rsize = 0;
+  E.row[at].render = NULL;
+  E.row[at].hl = NULL;
+  editorUpdateRow(&E.row[at]);
+  E.numrows++;
+  E.dirty++;
+}
+#+END_SRC
+
+And also here:
+
+#+BEGIN_SRC c
+void editorFreeRow(erow *row) {
+  free(row->render);
+  free(row->chars);
+  free(row->hl);
+}
+#+END_SRC
+
+Each value in the array will correspond to a character in render,
+and will tell you whether that character is part of a string, or a comment, or a number, and so on.
+Let’s create an enum containing the possible values that the hl array can contain:
+
+#+BEGIN_SRC c
+enum editorHighlight {
+  HL_NORMAL = 0,
+  HL_NUMBER
+};
+#+END_SRC
+
+*** Syntax highlighting in Clojure
+
+Right now I'm in the spacemacs cyberpunk theme.
+Let's see how it colors it:
+
+#+BEGIN_SRC clojure
+(defn myfun [x]
+  (str "string" (:key (inc x)))
+
+(defn -main []
+  (loop [n 1]
+    (if (every? true? (evaluate (ans n)))
+      (recur (inc n))
+(+ 
+      (recur n))))
+#+END_SRC
+
+Let's see how Rebel Readline does it.
+
+~defn~, ~if~, ~loop~, ~recur~, ~try~, ~catch~ etc are also blue, then all function names are yellow.
+A dark yellow, anyway. Then keywords are a pale yellow.
+
+So we're gonna need some sort of lookup table with words in it.
+
+#+BEGIN_SRC c
+int editorSyntaxToColor(int hl) {
+  switch (hl) {
+    case HL_COMMENT: return 36;
+    case HL_KEYWORD1: return 33;
+    case HL_KEYWORD2: return 32;
+    case HL_STRING: return 35;
+    case HL_NUMBER: return 31;
+    case HL_MATCH: return 34;
+    default: return 37;
+  }
+}
+#+END_SRC
+
+We will use an in_string variable to keep track of whether we are currently inside a string.
+If we are, then we’ll keep highlighting the current character as a string until we hit the closing quote.
+
+#+BEGIN_SRC c
+void editorUpdateSyntax(erow *row) {
+  row->hl = realloc(row->hl, row->rsize);
+  memset(row->hl, HL_NORMAL, row->rsize);
+  if (E.syntax == NULL) return;
+  int prev_sep = 1;
+  int in_string = 0;
+  int i = 0;
+  while (i < row->rsize) {
+    char c = row->render[i];
+    unsigned char prev_hl = (i > 0) ? row->hl[i - 1] : HL_NORMAL;
+    if (E.syntax->flags & HL_HIGHLIGHT_STRINGS) {
+      if (in_string) {
+        row->hl[i] = HL_STRING;
+        if (c == '\\' && i + 1 < row->rsize) {
+          row->hl[i + 1] = HL_STRING;
+          i += 2;
+          continue;
+        }
+        if (c == in_string) in_string = 0;
+        i++;
+        prev_sep = 1;
+        continue;
+      } else {
+        if (c == '"' || c == '\'') {
+          in_string = c;
+          row->hl[i] = HL_STRING;
+          i++;
+          continue;
+        }
+      }
+    }
+    if (E.syntax->flags & HL_HIGHLIGHT_NUMBERS) {
+      if ((isdigit(c) && (prev_sep || prev_hl == HL_NUMBER)) ||
+          (c == '.' && prev_hl == HL_NUMBER)) {
+        row->hl[i] = HL_NUMBER;
+        i++;
+        prev_sep = 0;
+        continue;
+      }
+    }
+    prev_sep = is_separator(c);
+    i++;
+  }
+}
+#+END_SRC
+
+Now let’s turn to highlighting keywords.
+We’re going to allow languages to specify two types of keywords that will be highlighted in different colors.
+(In C, we’ll highlight actual keywords in one color and common type names in the other color.)
+
+#+BEGIN_SRC c
+enum editorHighlight {
+  HL_NORMAL = 0,
+  HL_COMMENT,
+  HL_KEYWORD1,
+  HL_KEYWORD2,
+  HL_STRING,
+  HL_NUMBER,
+  HL_MATCH
+};
+#+END_SRC
+
+The two colors we’ll use for keywords are yellow (33) and green (32).
+
+Let’s add a keywords array to the ~editorSyntax~ struct.
+This will be a NULL-terminated array of strings, each string containing a keyword.
+To differentiate between the two types of keywords,
+we’ll terminate the second type of keywords with a pipe (|) character.
+
+#+BEGIN_SRC c
+struct editorSyntax {
+  char *filetype;
+  char **filematch;
+  char **keywords;
+  char *singleline_comment_start;
+  int flags;
+};
+
+char *C_HL_keywords[] = {
+  "switch", "if", "while", "for", "break", "continue", "return", "else",
+  "struct", "union", "typedef", "static", "enum", "class", "case",
+  "int|", "long|", "double|", "float|", "char|", "unsigned|", "signed|",
+  "void|", NULL
+};
+#+END_SRC
+
+So what I'll do here is make one for Clojure:
+
+#+BEGIN_SRC c
+char *Clj_HL_keywords[] = {
+  "fn", "defn", "defn-", "def", "let", "letfn", "declare", "ns", "if", "if-not",
+  "when", "when-not", "when-let", "when-first", "if-let", "cond", "condp", "do",
+  "case", "when-some", "if-some", "and", "or", "for", "doseq", "dotimes", "while",
+  "->", "->>", "as->", "cond->", "cond->>", "some->", "some->>", "lazy-cat", "lazy-seq",
+  "=|", "==|", "not=|", "not|", "identical?|", "compare|", "map|", "map-indexed|", "reduce|",
+  "true?|", "false?|", "instance?|", "nil?|", "some|", "some?|", "+|", "-|", "*|", "/|",
+  "quot|", "rem|", "mod|", "inc|", "dec|", "max|", "min|", "<|", ">|", "<=|", ">=|",
+  "int|", "zero?|", "pos?|", "neg?|", "even?|", "odd?|", "number?|", "integer?|",
+  "rand|", "rand-int|", "atom|", "deref|", "swap!|", "reset!|", "compare-and-set!|",
+  "add-watch|", "remove-watch|", "set-validator!|", "get-validator|", "identity|",
+  "constantly|", "comp|", "complement|", "partial|", "juxt|", "memoize|", "fnil|",
+  "every-pred|", "some-fn|", "apply|", "fn?|", "ifn?|", "str|", "name|", "count|",
+  "get|", "subs|", "replace|", "reverse|", "re-find|", "re-seq|", "re-matches",
+  "re-pattern|", "char|", "string?|", "count|", "empty|", "not-empty|", "into|",
+  "conj|", "distict|", "distinct?|", "empty?|", "every?|", "not-every?|", "some|",
+  "not-any?|", "sequential?|", "associative?|", "sorted?|", "counted?|", "reversible?|",
+  "coll?|", "list?|", "vector?|", "set?|", "map?|", "seq?|", "vec|", "vector|", "nth|",
+  "get|", "peek|", "assoc|", "pop|", "subvec|", "rseq|", "mapv|", "filterv|", "reduce-kv|",
+  "hash-map|", "array-map|", "zipmap|", "sorted-map|", "sorted-map-by|", "frequencies|",
+  "group-by|", "get-in|", "contains?|", "find|", "key|", "keys|", "val|", "vals|",
+  "assoc-in|", "dissoc|", "merge|", "merge-with|", "select-keys|", "update-in|",
+  "subseq|", "rsubseq|", "list|", "list*|", "first|", "rest|", "cons|", "set|", "hash-set|",
+  "sorted-set|", "sorted-set-by|", "disj|", "filter|", "remove|",   NULL
+}; 
+#+END_SRC
 
 
 ** Day 31: October 15, 2018
@@ -271,7 +493,7 @@ Let's try a more efficient one, like merge sort.
 
 *** pREPL Alpha released in Clojure 1.10
 
-I do know one project that is already using this to check out.
+I do know of [[https://github.com/raymcdermott/reptile-body/blob/master/src/reptile/server/socket_repl.clj][one project]] that is already using this to check out.
 My goal is to use it in my text editor, because it sounds really great:
 The simplicity of Socket REPL, but in structured EDN format.
 That way you can properly deal with what is a return value, what is printed and what's an error or whatever.
