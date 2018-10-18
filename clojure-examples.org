@@ -10,7 +10,7 @@
 
 The editor now recognizes .clj, .cljs and .cljc filetypes, and Clojure keywords.
 
-Here's how it works:
+Here's how it works. And [[https://github.com/porkostomus/bob][here]] is the full project source code.
 
 *** Alright so we've got our Clojure keywords:
 
