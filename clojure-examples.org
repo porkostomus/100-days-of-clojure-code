@@ -31,6 +31,7 @@ And then install Maven. And Ant.
 
 But now it works, my own build of Clojure 1.10:
 
+#+BEGIN_SRC
 BUILD SUCCESSFUL
 Total time: 1 minute 7 seconds
 porky@lenovo:~/clojure$ ls
@@ -41,22 +42,27 @@ clojure.iml  epl-v10.html     pom.xml                     test
 porky@lenovo:~/clojure$ java -jar clojure.jar 
 Clojure 1.10.0-master-SNAPSHOT
 user=> 
+#+END_SRC
 
 This is the "real" Clojure REPL. With this, you don't get line editing, history or paren-matching.
 
 Then we launch a socket server:
 
+#+BEGIN_SRC
 porky@lenovo:~/clojure$ java -cp clojure.jar -Dclojure.server.repl="{:port 5555 :accept clojure.core.server/repl}" clojure.main
 Clojure 1.10.0-master-SNAPSHOT
 user=> 
+#+END_SRC
 
 Then in another window, we Telnet into it:
 
+#+BEGIN_SRC 
 porky@lenovo:~$ telnet 127.0.0.1 5555
 Trying 127.0.0.1...
 Connected to 127.0.0.1.
 Escape character is '^]'.
 user=> 
+#+END_SRC
 
 Alright great, so we've got the Socket REPL running. Now what am I supposed to do with it?
 
@@ -65,7 +71,7 @@ What am I even wanting to do, anyway? I'm not sure I remember.
 I want to have a running Clojure process that my editor can send forms to. 
 
 I need to take a moment to ponder this in the hammock.
-
+See you in a bit.
 
 *** Exercism Bash track
 
