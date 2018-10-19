@@ -1,6 +1,188 @@
 * 100 Days of Clojure Code
 
+** Day 35: October 19, 2018
 
+*** pREPL
+
+Since this is still in Alpha and lacking "mature" documentation,
+it's a great opportunity to dig into this new infrastructure as it is being built
+by looking at the code itself and to seek out and learn from the few brave early explorers.
+
+[[https://github.com/clojure/clojure/blob/86a158d0e0718f5c93f9f2bb71e26bc794e7d58e/src/clj/clojure/core/server.clj#L187][Here's the actual pREPL source]] in the clojure.core.server namespace.
+
+[[https://github.com/jumarko/clojure-repl-experiments/blob/master/src/clojure_repl_experiments/prepl.clj][Here's a concise implementation]] by [[https://github.com/jumarko][jumarko]],
+which I found simply by searching for Clojure code containing "prepl" on GitHub.
+It references a discussion on Slack with Ray McDermott,
+who is working on [[https://github.com/raymcdermott/reptile-body][REPtiLe]], a shared pREPL with a re-frame UI that they're using on [[https://www.youtube.com/channel/UC1UxEQuBvfLJgWR5tk_XIXA][Apropos]].
+
+**** Prerequisite background understanding
+
+Since pREPL is, as I understand it, basically a Socket REPL with structured output,
+I realize that I ought to begin by properly understanding Socket REPL. 
+
+***** Build Clojure locally
+
+I just went down a little rabbit hole while following this [[https://lambdaisland.com/guides/clojure-repls/clojure-repls][guide from lambdaisland]],
+which has you run the clojure jar itself.
+
+This resulted in an error that it couldn't find spec on the classpath.
+Indeed, it turns out this is because I needed to build the jar myself from the Clojure source.
+And then install Maven. And Ant.
+
+But now it works, my own build of Clojure 1.10:
+
+BUILD SUCCESSFUL
+Total time: 1 minute 7 seconds
+porky@lenovo:~/clojure$ ls
+antsetup.sh  clojure.jar      hs_err_pid24697.log         readme.txt
+build.xml    CONTRIBUTING.md  maven-classpath             src
+changes.md   doc              maven-classpath.properties  target
+clojure.iml  epl-v10.html     pom.xml                     test
+porky@lenovo:~/clojure$ java -jar clojure.jar 
+Clojure 1.10.0-master-SNAPSHOT
+user=> 
+
+This is the "real" Clojure REPL. With this, you don't get line editing, history or paren-matching.
+
+Then we launch a socket server:
+
+porky@lenovo:~/clojure$ java -cp clojure.jar -Dclojure.server.repl="{:port 5555 :accept clojure.core.server/repl}" clojure.main
+Clojure 1.10.0-master-SNAPSHOT
+user=> 
+
+Then in another window, we Telnet into it:
+
+porky@lenovo:~$ telnet 127.0.0.1 5555
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+user=> 
+
+Alright great, so we've got the Socket REPL running. Now what am I supposed to do with it?
+
+What am I even wanting to do, anyway? I'm not sure I remember.
+
+I want to have a running Clojure process that my editor can send forms to. 
+
+I need to take a moment to ponder this in the hammock.
+
+
+*** Exercism Bash track
+
+This is something I've been meaning to start for awhile.
+First step is to install [[https://github.com/sstephenson/bats][bats]], the Bash Automated Testing System.
+
+Here's what tests look like in bats:
+
+#+BEGIN_SRC bash
+#!/usr/bin/env bats
+
+@test "addition using bc" {
+  result="$(echo 2+2 | bc)"
+  [ "$result" -eq 4 ]
+}
+
+@test "addition using dc" {
+  result="$(echo 2 2+p | dc)"
+  [ "$result" -eq 4 ]
+}
+#+END_SRC
+
+Looks like I already installed it. 
+
+*** Exercism Clojure (mentoring)
+
+It's very hard to spend any time on Exercism without feeling guilty about how backed-up it is on mentoring solutions.
+There's 7 of us, and we are WAY behind. So let's at least look at one:
+
+#+BEGIN_SRC clojure
+(ns isbn-verifier)
+
+(defn to-digit
+  [isbn-char]
+  (cond 
+    (= isbn-char \X) 10
+    :else (Integer/parseInt (str isbn-char))))
+
+(defn get-digits
+  [isbn]
+  (map to-digit 
+    (filter #(or (Character/isDigit %) (= % \X)) isbn)))
+
+(defn valid-isbn?
+  [isbn]
+  (if (re-matches #"^[\d-]*[\dX]$" isbn)
+    (= (count (get-digits isbn)) 10)
+    false))
+
+(defn isbn-sum
+  [isbn]
+  (->> isbn
+       get-digits
+       reverse
+       (map-indexed #(* (inc %) %2))
+       (reduce +)))
+
+(defn isbn?
+  [isbn]
+  (if (valid-isbn? isbn)
+    (= 0 (rem (isbn-sum isbn) 11))
+    false))
+#+END_SRC 
+
+#+RESULTS:
+
+Test suite:
+
+#+BEGIN_SRC clojure
+(ns isbn-verifier-test
+  (:require [clojure.test :refer [deftest is]]
+            [isbn-verifier :refer [isbn?]]))
+
+(deftest valid-isbn-number
+  (is (= true (isbn? "3-598-21508-8"))))
+
+(deftest invalid-isbn-check-digit
+  (is (= false (isbn? "3-598-21508-9"))))
+
+(deftest valid-isbn-number-with-a-check-digit-of-10
+  (is (= true (isbn? "3-598-21507-X"))))
+
+(deftest check-digit-is-a-character-other-than-X
+  (is (= false (isbn? "3-598-21507-A"))))
+
+(deftest invalid-character-in-isbn
+  (is (= false (isbn? "3-598-2K507-0"))))
+
+(deftest X-is-only-valid-as-a-check-digit
+  (is (= false (isbn? "3-598-2X507-9"))))
+
+(deftest valid-isbn-without-separating-dashes
+  (is (= true (isbn? "3598215088"))))
+
+(deftest isbn-without-separating-dashes-and-X-as-check-digit
+  (is (= true (isbn? "359821507X"))))
+
+(deftest isbn-without-check-digit-and-dashes
+  (is (= false (isbn? "359821507"))))
+
+(deftest too-long-isbn-and-no-dashes
+  (is (= false (isbn? "3598215078X"))))
+
+(deftest too-short-isbn
+  (is (= false (isbn? "00"))))
+
+(deftest isbn-without-check-digit
+  (is (= false (isbn? "3-598-21507"))))
+
+(deftest too-long-isbn
+  (is (= false (isbn? "3-598-21507-XX"))))
+
+(deftest check-digit-of-X-should-not-be-used-for-0
+  (is (= false (isbn? "3-598-21515-X"))))
+#+END_SRC
+
+#+RESULTS:
 
 ** Day 34: October 18, 2018
 
