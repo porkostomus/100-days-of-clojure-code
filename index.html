@@ -31,10 +31,7 @@
   </p>
   <p>Now it feels silly to reproduce work that has already been done, but whatevs. This is my way of learning.</p>
   
-  <pre><code class="language-klipse">(ns porkostomus.log
-  (:require [clojure.spec.alpha :as s]))
-
-(s/conform even? 1000)
+  <pre><code class="language-klipse">(s/valid? even? 10)
 </code></pre>
   
 <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
