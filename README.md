@@ -8,9 +8,9 @@ Progress will also be tweeted from [porkostomus](https://twitter.com/porkostomus
 ## Contents
 
 * [Rules](rules.md)
-* [Log 1](log.md)
-* [Log 2](log.org)
-* [Log 3](clojure-examples.org)
+* [Log 1](log-1.md)
+* [Log 2](log-2.org)
+* [Log 3](log-3.org)
 * [GitHub Pages log](https://porkostomus.github.io/100-days-of-clojure-code/)
 * [maria.cloud log (current progress)](https://www.maria.cloud/gist/00d83fa71b57bc7cbefd8f3cb6cab107)
 * [FAQ](FAQ.md)
